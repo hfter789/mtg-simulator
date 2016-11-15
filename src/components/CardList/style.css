@@ -1,0 +1,30 @@
+.CardList-container {
+	margin-top: 30px;
+	height: 800px;
+    overflow-y: scroll;
+    background: white;
+    border-radius: 5px;
+}
+
+.CardList-card {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.CardList-img {
+	width: 55%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.CardList-detail {
+	width: 45%;
+	display: inline-block;
+	vertical-align: top;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.CardList-desc {
+	margin-top: 10px;
+}

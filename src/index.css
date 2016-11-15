@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #E3F2FD;
+}
+
+input {
+	height: 35px;
+    width: 250px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.btn {
+	height: 39px;
+	width: 90px;
+	display: inline-block;
+	text-align: center;
+    vertical-align: bottom;
+    line-height: 39px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.default-btn {
+	background-color: rgb(33, 150, 243);
+	color: white;
+}
+
+.default-btn:hover {
+	background-color: rgba(33, 150, 243, .8);
+}
+
+.default-btn:active {
+	background-color: #1976D2;
+}

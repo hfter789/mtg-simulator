@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CardSearcher from '../CardSearcher';
+import DeckManager from '../DeckManager';
 
 class App extends Component {
 
@@ -7,6 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <CardSearcher />
+        <DeckManager />
       </div>
     );
   }

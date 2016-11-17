@@ -2,5 +2,8 @@
 	width: 40%;
 	float: left;
 	box-sizing: border-box;
-	padding: 30px 20px 30px 40px;
+	padding: 30px 0px 30px 40px;
+	background-color: white;
+    box-shadow: 2px -1px 5px 0px rgba(0,0,0,0.5);
+    height: 100vh;
 }

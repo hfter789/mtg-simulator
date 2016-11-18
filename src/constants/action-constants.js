@@ -1,0 +1,2 @@
+export const FULFILLED = 'FULFILLED';
+export const CARD_SEARCH_RESULT = 'CARD_SEARCH_RESULT';

@@ -1,21 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import { Provider } from 'react-redux';
 import promiseMiddleware from 'redux-promise-middleware';
+import thunk from 'redux-thunk'
 import App from './components/App';
 import './index.css';
 import 'normalize.css/normalize.css';
 import reducers from './reducers'
 
-const composeStoreWithMiddleware = applyMiddleware(
-  promiseMiddleware()
-)(createStore);
+const devtool = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 const store = createStore(
   reducers,
-  applyMiddleware(
-    promiseMiddleware
-  ),
+  compose(
+    applyMiddleware(
+      promiseMiddleware(),
+      thunk,
+    ),
+    devtool,
+  )
 );
 
 ReactDOM.render(

@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux';
 import promiseMiddleware from 'redux-promise-middleware';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import thunk from 'redux-thunk'
 import App from './components/App';
+import PlayField from './components/PlayField';
 import './index.css';
 import 'normalize.css/normalize.css';
 import reducers from './reducers'
@@ -24,7 +26,14 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router history={browserHistory}>
+      <Route
+        path='deckmanager'
+        component={App} />
+      <Route
+        path='playfield'
+        component={PlayField} />
+    </Router>
   </Provider>
   ,
   document.getElementById('root')

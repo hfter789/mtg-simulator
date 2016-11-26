@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Card from '../Card';
 import './style.css';
 
 class CardList extends Component {
@@ -14,7 +15,7 @@ class CardList extends Component {
             cards.map((card) => {
               return (
                 <li className='CardList-card' key={card.multiverseid}>
-                  <img className='CardList-img' src={card.imageUrl} alt={card.name}/>
+                  <Card imageUrl={card.imageUrl} name={card.name} />
                   <div className='CardList-detail'>
                     <h5>{card.name}</h5>
                     <p className='CardList-desc'>{card.text}</p>

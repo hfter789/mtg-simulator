@@ -5,7 +5,9 @@
 
 body {
   font-family: sans-serif;
-  background-color: #E3F2FD;
+  background-color: #2F6545;
+  color: #E0F2F1;
+  font-weight: 100;
 }
 
 input {
@@ -37,4 +39,32 @@ input {
 
 .default-btn:active {
 	background-color: #1976D2;
+}
+
+.well {
+  background-color: #181818;
+  border-radius: 5px;
+  box-shadow: 1px 1px 8px #333;
+  padding-bottom: 15px;
+}
+
+.card-holder {
+  height: 200px;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid #333;
+  margin: 15px 0 0 15px;
+  text-align: center;
+}
+
+.small-card-holder {
+  width: 15%;
+}
+
+.large-card-holder {
+  width: 65%;
+}
+
+.full-card-holder {
+  width: calc(80% + 15px);
 }

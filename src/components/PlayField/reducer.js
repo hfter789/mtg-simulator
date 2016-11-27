@@ -1,6 +1,15 @@
+import { shuffleArray } from './utils';
 import { PLAYFIELD_ADD_CARD, PLAYFIELD_REMOVE_CARD } from '../../constants/action-constants';
 import { normalize } from './utils';
 import MOCK_CARD_DATA from './mock-card-data.json';
+
+MOCK_CARD_DATA.library = shuffleArray(MOCK_CARD_DATA.library);
+MOCK_CARD_DATA.library = MOCK_CARD_DATA.library.map((card, index) => ({
+  id: card.id,
+  imageUrl: card.imageUrl,
+  name: card.name,
+  deckId: index,
+}));
 
 export default (state = MOCK_CARD_DATA, action) => {
   switch (action.type) {
@@ -18,12 +27,7 @@ export default (state = MOCK_CARD_DATA, action) => {
       if (holderName) {
         const normalizeHolder = normalize(holderName);
         const targetHolder = state[normalizeHolder];
-        for (let i = 0; i < targetHolder.length; i++) {
-          if (targetHolder[i].id === cardObj.id) {
-            targetHolder.splice(i, 1);
-            break;
-          }
-        }
+        targetHolder.splice(cardObj.deckId, 1);
         return Object.assign({}, state);
       }
       return state || {};

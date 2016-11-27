@@ -43,7 +43,7 @@ class PlayField extends Component {
     const isLibrary = (normalizeHolder === 'library');
     return holderDeck.map((card, index) =>
       <Card
-        key={`${index}-${index}`}
+        key={card.deckId}
         data-holder-name={holderName}
         cardId={ card.id }
         className='PlayField-card'

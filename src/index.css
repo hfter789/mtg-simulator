@@ -50,17 +50,21 @@ input {
 
 .card-holder {
   position: relative;
-  height: 200px;
+  height: 100px;
   display: inline-block;
   box-sizing: border-box;
   border: 1px solid #333;
-  margin: 15px 0 0 15px;
+  margin: 2px 0 0 5px;
   text-align: center;
   overflow: scroll;
 }
 
+.extra-small-card-holder {
+  width: 10%;
+}
+
 .small-card-holder {
-  width: 15%;
+  width: 16%;
 }
 
 .large-card-holder {
@@ -68,5 +72,5 @@ input {
 }
 
 .full-card-holder {
-  width: calc(80% + 15px);
+  width: calc(81% + 5px);
 }

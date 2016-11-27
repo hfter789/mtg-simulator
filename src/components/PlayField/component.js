@@ -27,7 +27,7 @@ const holderList = [
   },
   {
     name: 'Library',
-    className: 'small-card-holder card-holder',
+    className: 'extra-small-card-holder card-holder',
   }
 ];
 
@@ -69,6 +69,7 @@ class PlayField extends Component {
   render() {
     return (
       <div className='PlayField-Container well'>
+        { this.renderHolders() }
         { this.renderHolders() }
       </div>
     );

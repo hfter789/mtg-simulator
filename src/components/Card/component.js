@@ -20,7 +20,7 @@ class Card extends Component {
   }
 
   render() {
-    const { className, connectDragSource, imageUrl, name, isDragging, style } = this.props;
+    const { className, connectDragSource, disableTap, imageUrl, name, isDragging, style } = this.props;
     const { isTapped } = this.state;
     if (isDragging) {
       return null;
@@ -33,7 +33,7 @@ class Card extends Component {
         src={imageUrl}
         alt={name}
         style={style}
-        onClick={this.onImageClick}
+        onClick={disableTap ? null : this.onImageClick}
       />
     );
   }
@@ -48,6 +48,11 @@ const cardSource = {
     };
   },
 
+  canDrag(props, monitor) {
+    debugger;
+    return !props.disableDrag;
+  },
+
   endDrag(props, monitor, card) {
     const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
@@ -59,6 +64,7 @@ const cardSource = {
 };
 
 Card.propTypes = {
+  canDrag: PropTypes.bool,
   connectDragSource: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired
 };

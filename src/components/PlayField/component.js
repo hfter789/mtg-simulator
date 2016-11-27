@@ -3,6 +3,7 @@ import CardHolder from '../CardHolder';
 import Card from '../Card';
 import './style.css';
 import { normalize } from './utils';
+import mtgCardBack from './assets/mtg-cardback.jpg';
 
 const holderList = [
   {
@@ -33,6 +34,17 @@ const holderList = [
 
 class PlayField extends Component {
 
+  renderLibraryHolder() {
+    return (
+      <Card
+        disableDrag={true}
+        disableTap={true}
+        className='PlayField-card'
+        imageUrl={mtgCardBack}
+      />
+    );
+  }
+
   renderHolderCards(holderName) {
     const { playDeck } = this.props;
     const normalizeHolder = normalize(holderName);
@@ -62,7 +74,7 @@ class PlayField extends Component {
   renderHolders() {
     return holderList.map((holderObj, i) =>
       <CardHolder className={holderObj.className} name={holderObj.name} key={i}>
-        { this.renderHolderCards(holderObj.name) }
+        { holderObj.name === 'Library' ? this.renderLibraryHolder() : this.renderHolderCards(holderObj.name) }
       </CardHolder>
     );
   }

@@ -17,23 +17,22 @@ class Card extends Component {
   }
 }
 
-const boxSource = {
+const cardSource = {
   beginDrag(props) {
     return {
-      id: props.cardId
+      id: props.cardId,
+      imageUrl: props.imageUrl,
+      name: props.name,
     };
   },
 
   endDrag(props, monitor) {
     const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
-    // if (dropResult) {
-    //   console.log( // eslint-disable-line no-alert
-    //     `You dropped ${item.id} into ${dropResult.holderName}!`
-    //   );
-    // }
-    // TODO: dispatch an action to add card to the holder!
-    // TODO2: remove card from current holder!
+    if (dropResult) {
+      props.addCardToHolder(item, dropResult.holderName);
+      // TODO2: remove card from current holder!
+    }
   }
 };
 
@@ -42,7 +41,7 @@ Card.propTypes = {
   isDragging: PropTypes.bool.isRequired
 };
 
-export default DragSource('card', boxSource, (connect, monitor) => ({
+export default DragSource('card', cardSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging()
 }))(Card);

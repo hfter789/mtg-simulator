@@ -1,7 +1,8 @@
-.play-field-container {
+.PlayField-container {
   margin: 20px;
 }
 
-.card {
+.PlayField-card {
   border-radius: 10px;
+  height: 100%;
 }

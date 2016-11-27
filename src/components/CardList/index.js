@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import CardList from './component';
+import component from './component';
 
 export default connect(
   state => ({
     cards: state.cardSearch.cards
   }),
-)(CardList);
+)(component);

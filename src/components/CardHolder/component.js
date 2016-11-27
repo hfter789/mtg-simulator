@@ -4,11 +4,11 @@ import { DropTarget } from 'react-dnd';
 
 class CardHolder extends Component {
   render() {
-    const { className, name, connectDropTarget } = this.props;
+    const { className, name, connectDropTarget, children } = this.props;
 
     return connectDropTarget(
       <div className={className}>
-        { name }
+        { children ? children : <div className='CardHolder-label'> { name } </div> }
       </div>
     );
   }

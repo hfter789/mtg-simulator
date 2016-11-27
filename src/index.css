@@ -49,6 +49,7 @@ input {
 }
 
 .card-holder {
+  position: relative;
   height: 200px;
   display: inline-block;
   box-sizing: border-box;

@@ -1,18 +1,40 @@
 import React, { Component, PropTypes } from 'react';
 import './style.css';
 import { DragSource } from 'react-dnd';
+import classNames from 'classnames';
 
 class Card extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isTapped: false,
+    };
+    this.onImageClick = this.onImageClick.bind(this);
+  }
+
+  onImageClick() {
+    this.setState({
+      isTapped: !this.state.isTapped,
+    });
+  }
 
   render() {
     const { className, connectDragSource, imageUrl, name, isDragging, style } = this.props;
-
+    const { isTapped } = this.state;
+    if (isDragging) {
+      return null;
+    }
     return connectDragSource(
       <img
-        className={className}
+        className={classNames(className, {
+          'Card-rotated': isTapped
+        })}
         src={imageUrl}
-        alt={name + isDragging}
-        style={style} />
+        alt={name}
+        style={style}
+        onClick={this.onImageClick}
+      />
     );
   }
 }
@@ -26,12 +48,12 @@ const cardSource = {
     };
   },
 
-  endDrag(props, monitor) {
+  endDrag(props, monitor, card) {
     const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
     if (dropResult) {
       props.addCardToHolder(item, dropResult.holderName);
-      // TODO2: remove card from current holder!
+      props.removeCardFromHolder(item, card.props['data-holder-name']);
     }
   }
 };

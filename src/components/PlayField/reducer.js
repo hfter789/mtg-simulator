@@ -21,16 +21,19 @@ export default (state = {}, action) => {
     }
     case PLAYFIELD_REMOVE_CARD: {
       const { holderName, cardObj } = action.payload;
-      const normalizeHolder = normalize(holderName);
-      const targetHolder = state[normalizeHolder] || {};
-      if (targetHolder[cardObj.id].count === 1) {
-        delete targetHolder[cardObj.id];
-      } else {
-        targetHolder[cardObj.id].count --;
+      if (holderName) {
+        const normalizeHolder = normalize(holderName);
+        const targetHolder = state[normalizeHolder] || {};
+        if (targetHolder[cardObj.id].count === 1) {
+          delete targetHolder[cardObj.id];
+        } else {
+          targetHolder[cardObj.id].count --;
+        }
+        const newStateSubset = {};
+        newStateSubset[normalizeHolder] = targetHolder;
+        return Object.assign({}, state, newStateSubset);
       }
-      const newStateSubset = {};
-      newStateSubset[normalizeHolder] = targetHolder;
-      return Object.assign({}, state, newStateSubset);
+      return state || {};
     }
     default: return state || {};
   }

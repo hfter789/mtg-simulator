@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.15.2",
+    "classnames": "^2.2.5",
     "normalize.css": "^5.0.0",
     "react": "^15.3.2",
     "react-dnd": "^2.1.4",

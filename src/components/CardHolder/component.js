@@ -8,7 +8,8 @@ class CardHolder extends Component {
 
     return connectDropTarget(
       <div className={className}>
-        { children ? children : <div className='CardHolder-label'> { name } </div> }
+        <div className='CardHolder-label'> { name } </div>
+        { children }
       </div>
     );
   }

@@ -47,6 +47,7 @@ class PlayField extends Component {
         cardComponents.push(
           <Card
             key={`${index}-${i}`}
+            data-holder-name={holderName}
             cardId={ cardId }
             className='PlayField-card'
             name={card.name}

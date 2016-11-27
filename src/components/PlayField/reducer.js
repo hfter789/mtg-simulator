@@ -8,7 +8,7 @@ export default (state = MOCK_CARD_DATA, action) => {
       const { holderName, cardObj } = action.payload;
       const normalizeHolder = normalize(holderName);
       const targetHolder = state[normalizeHolder] || [];
-      targetHolder.push(cardObj);
+      targetHolder.unshift(cardObj);
       const newStateSubset = {};
       newStateSubset[normalizeHolder] = targetHolder;
       return Object.assign({}, state, newStateSubset);

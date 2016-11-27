@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import './style.css';
 import { DragSource } from 'react-dnd';
 import classNames from 'classnames';
+import mtgCardBack from '../../assets/mtg-cardback.jpg';
 
 class Card extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class Card extends Component {
   }
 
   render() {
-    const { className, connectDragSource, disableTap, imageUrl, name, isDragging, style } = this.props;
+    const { className, connectDragSource, disableTap, imageUrl, name, isDragging, isFacedown, style } = this.props;
     const { isTapped } = this.state;
     if (isDragging) {
       return null;
@@ -30,7 +31,7 @@ class Card extends Component {
         className={classNames(className, {
           'Card-rotated': isTapped
         })}
-        src={imageUrl}
+        src={isFacedown ? mtgCardBack : imageUrl}
         alt={name}
         style={style}
         onClick={disableTap ? null : this.onImageClick}
@@ -49,7 +50,6 @@ const cardSource = {
   },
 
   canDrag(props, monitor) {
-    debugger;
     return !props.disableDrag;
   },
 

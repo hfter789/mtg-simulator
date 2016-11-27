@@ -1,20 +1,14 @@
 import { PLAYFIELD_ADD_CARD, PLAYFIELD_REMOVE_CARD } from '../../constants/action-constants';
 import { normalize } from './utils';
+import MOCK_CARD_DATA from './mock-card-data.json';
 
-export default (state = {}, action) => {
+export default (state = MOCK_CARD_DATA, action) => {
   switch (action.type) {
     case PLAYFIELD_ADD_CARD: {
       const { holderName, cardObj } = action.payload;
       const normalizeHolder = normalize(holderName);
-      const targetHolder = state[normalizeHolder] || {};
-      if (!targetHolder[cardObj.id]) {
-        targetHolder[cardObj.id] = {
-          data: cardObj,
-          count: 1,
-        };
-      } else {
-        targetHolder[cardObj.id].count ++;
-      }
+      const targetHolder = state[normalizeHolder] || [];
+      targetHolder.push(cardObj);
       const newStateSubset = {};
       newStateSubset[normalizeHolder] = targetHolder;
       return Object.assign({}, state, newStateSubset);
@@ -23,15 +17,14 @@ export default (state = {}, action) => {
       const { holderName, cardObj } = action.payload;
       if (holderName) {
         const normalizeHolder = normalize(holderName);
-        const targetHolder = state[normalizeHolder] || {};
-        if (targetHolder[cardObj.id].count === 1) {
-          delete targetHolder[cardObj.id];
-        } else {
-          targetHolder[cardObj.id].count --;
+        const targetHolder = state[normalizeHolder];
+        for (let i = 0; i < targetHolder.length; i++) {
+          if (targetHolder[i].id === cardObj.id) {
+            targetHolder.splice(i, 1);
+            break;
+          }
         }
-        const newStateSubset = {};
-        newStateSubset[normalizeHolder] = targetHolder;
-        return Object.assign({}, state, newStateSubset);
+        return Object.assign({}, state);
       }
       return state || {};
     }

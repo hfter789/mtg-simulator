@@ -3,7 +3,6 @@ import CardHolder from '../CardHolder';
 import Card from '../Card';
 import './style.css';
 import { normalize } from './utils';
-import mtgCardBack from './assets/mtg-cardback.jpg';
 
 const holderList = [
   {
@@ -34,17 +33,6 @@ const holderList = [
 
 class PlayField extends Component {
 
-  renderLibraryHolder() {
-    return (
-      <Card
-        disableDrag={true}
-        disableTap={true}
-        className='PlayField-card'
-        imageUrl={mtgCardBack}
-      />
-    );
-  }
-
   renderHolderCards(holderName) {
     const { playDeck } = this.props;
     const normalizeHolder = normalize(holderName);
@@ -52,29 +40,25 @@ class PlayField extends Component {
     if (!holderDeck) {
       return null;
     }
-    const cardComponents = [];
-    Object.keys(holderDeck).forEach((cardId, index) => {
-      const { count, data:card } = holderDeck[cardId];
-      for (let i = 0; i < count; i++) {
-        cardComponents.push(
-          <Card
-            key={`${index}-${i}`}
-            data-holder-name={holderName}
-            cardId={ cardId }
-            className='PlayField-card'
-            name={card.name}
-            imageUrl={card.imageUrl}
-          />
-        );
-      }
-    });
-    return cardComponents;
+    const isLibrary = (normalizeHolder === 'library');
+    return holderDeck.map((card, index) =>
+      <Card
+        key={`${index}-${index}`}
+        data-holder-name={holderName}
+        cardId={ card.id }
+        className='PlayField-card'
+        disableTap={isLibrary}
+        name={card.name}
+        imageUrl={card.imageUrl}
+        isFacedown={isLibrary}
+      />
+    );
   }
 
   renderHolders() {
     return holderList.map((holderObj, i) =>
       <CardHolder className={holderObj.className} name={holderObj.name} key={i}>
-        { holderObj.name === 'Library' ? this.renderLibraryHolder() : this.renderHolderCards(holderObj.name) }
+        { this.renderHolderCards(holderObj.name) }
       </CardHolder>
     );
   }
@@ -83,12 +67,6 @@ class PlayField extends Component {
     return (
       <div className='PlayField-Container well'>
         { this.renderHolders() }
-        <Card
-          cardId='213613'
-          className='PlayField-card'
-          name='card'
-          imageUrl='http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=213613&type=card'
-        />
       </div>
     );
   }

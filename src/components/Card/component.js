@@ -19,8 +19,7 @@ class Card extends Component {
   }
 
   render() {
-    const { className, connectDragSource, disableTap, imageUrl, name, isDragging, isFacedown, style } = this.props;
-    const { isTapped } = this.state;
+    const { className, connectDragSource, disableTap, imageUrl, name, isDragging, isFacedown, isTapped, style } = this.props;
     if (isDragging) {
       return null;
     }

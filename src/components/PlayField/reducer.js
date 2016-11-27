@@ -26,7 +26,6 @@ export default (state = MOCK_CARD_DATA, action) => {
       return Object.assign({}, state, newStateSubset);
     }
     case PLAYFIELD_REMOVE_CARD: {
-      debugger;
       const { holderName, cardObj } = action.payload;
       if (holderName) {
         const normalizeHolder = normalize(holderName);
@@ -42,14 +41,14 @@ export default (state = MOCK_CARD_DATA, action) => {
       return state || {};
     }
     case PLAYFIELD_TOGGLE_TAP: {
-      debugger;
-      const { holderName, cardObj } = action.payload;
+      const cardObj = action.payload;
+      const { 'data-holder-name': holderName, deckId } = cardObj;
       if (holderName) {
         const normalizeHolder = normalize(holderName);
         const targetHolder = state[normalizeHolder];
         for (let i = 0; i < targetHolder.length; i++) {
-          if (targetHolder[i].deckId === cardObj.deckId) {
-            targetHolder.splice(i, 1);
+          if (targetHolder[i].deckId === deckId) {
+            targetHolder[i].isTapped = !targetHolder[i].isTapped;
             return Object.assign({}, state);
           }
         }

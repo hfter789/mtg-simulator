@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CardList from './component';
-import { addCardToHolder, removeCardFromHolder } from '../../actions';
+import { addCardToHolder, removeCardFromHolder } from '../PlayField/actions';
 
 export default connect(
   state => ({

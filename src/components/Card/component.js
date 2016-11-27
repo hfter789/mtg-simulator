@@ -15,9 +15,7 @@ class Card extends Component {
   }
 
   onImageClick() {
-    this.setState({
-      isTapped: !this.state.isTapped,
-    });
+    this.props.toggleTap(this.props);
   }
 
   render() {
@@ -44,6 +42,7 @@ const cardSource = {
   beginDrag(props) {
     return {
       id: props.cardId,
+      deckId: props.deckId,
       imageUrl: props.imageUrl,
       name: props.name,
     };

@@ -47,10 +47,12 @@ class PlayField extends Component {
         data-holder-name={holderName}
         cardId={ card.id }
         className='PlayField-card'
+        deckId={card.deckId}
         disableTap={isLibrary}
         name={card.name}
         imageUrl={card.imageUrl}
         isFacedown={isLibrary}
+        toggleTap={this.props.toggleTap}
       />
     );
   }

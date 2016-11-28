@@ -47,30 +47,3 @@ input {
   box-shadow: 1px 1px 8px #333;
   padding-bottom: 15px;
 }
-
-.card-holder {
-  position: relative;
-  height: 100px;
-  display: inline-block;
-  box-sizing: border-box;
-  border: 1px solid #333;
-  margin: 2px 0 0 5px;
-  text-align: center;
-  overflow: scroll;
-}
-
-.extra-small-card-holder {
-  width: 10%;
-}
-
-.small-card-holder {
-  width: 16%;
-}
-
-.large-card-holder {
-  width: 65%;
-}
-
-.full-card-holder {
-  width: calc(81% + 5px);
-}

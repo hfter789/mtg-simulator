@@ -6,11 +6,11 @@ import { normalize } from './utils';
 
 const holderList = [
   {
-    name: 'Battle Field',
+    name: 'Creatures',
     className: 'large-card-holder card-holder',
   },
   {
-    name: 'Graveyard',
+    name: 'non-creature Permanents',
     className: 'small-card-holder card-holder',
   },
   {
@@ -18,17 +18,21 @@ const holderList = [
     className: 'large-card-holder card-holder',
   },
   {
-    name: 'Exile',
+    name: 'Graveyard',
     className: 'small-card-holder card-holder',
   },
   {
     name: 'Hand',
-    className: 'full-card-holder card-holder',
+    className: 'large-card-holder card-holder',
   },
   {
     name: 'Library',
     className: 'extra-small-card-holder card-holder',
-  }
+  },
+  {
+    name: 'Exile',
+    className: 'extra-small-card-holder card-holder',
+  },
 ];
 
 class PlayField extends Component {
@@ -58,19 +62,35 @@ class PlayField extends Component {
     );
   }
 
-  renderHolders() {
-    return holderList.map((holderObj, i) =>
-      <CardHolder className={holderObj.className} name={holderObj.name} key={i}>
-        { this.renderHolderCards(holderObj.name) }
-      </CardHolder>
+  renderController() {
+    return (
+      <div> 20 </div>
+    );
+  }
+
+  renderPlayField() {
+    return (
+      <div>
+        <div className='PlayField-holder-container'>
+          {
+            holderList.map((holderObj, i) =>
+              <CardHolder className={holderObj.className} name={holderObj.name} key={i}>
+                { this.renderHolderCards(holderObj.name) }
+              </CardHolder>
+            )
+          }
+        </div>
+        {
+          this.renderController()
+        }
+      </div>
     );
   }
 
   render() {
     return (
-      <div className='PlayField-Container well'>
-        { this.renderHolders() }
-        { this.renderHolders() }
+      <div className='PlayField-container well'>
+        { this.renderPlayField() }
       </div>
     );
   }

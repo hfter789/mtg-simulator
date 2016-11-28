@@ -2,8 +2,40 @@
   margin: 20px;
 }
 
+.PlayField-holder-container {
+  width: 80%;
+}
+
 .PlayField-card {
   height: 100%;
   position: relative;
   border-radius: 10px;
+}
+
+
+.card-holder {
+  position: relative;
+  height: 100px;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid #333;
+  margin: 2px 0 0 5px;
+  text-align: center;
+  overflow: scroll;
+}
+
+.extra-small-card-holder {
+  width: 10%;
+}
+
+.small-card-holder {
+  width: 20%;
+}
+
+.large-card-holder {
+  width: 78%;
+}
+
+.full-card-holder {
+  width: 89%;
 }

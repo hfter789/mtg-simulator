@@ -7,7 +7,7 @@ export default connect(
     cards: state.cardSearch.cards
   }),
   dispatch => ({
-    addCardToHolder: (cardObj, holderName) => dispatch(addCardToHolder(cardObj, holderName)),
-    removeCardFromHolder: (cardObj, holderName) => dispatch(removeCardFromHolder(cardObj, holderName)),
+    addCardToHolder: (cardObj, player, holderName) => dispatch(addCardToHolder(cardObj, player, holderName)),
+    removeCardFromHolder: (cardObj, player, holderName) => dispatch(removeCardFromHolder(cardObj, player, holderName)),
   })
 )(CardList);

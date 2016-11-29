@@ -1,54 +1,80 @@
-{
-  "library": [
-    {
-      "id": 270957,
-      "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=270957&type=card",
-      "name": "Growing Ranks"
-    },
-    {
-      "id": 270957,
-      "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=270957&type=card",
-      "name": "Growing Ranks"
-    },
-    {
-      "id": 289215,
-      "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=289215&type=card",
-      "name": "Druid's Deliverance"
-    },
-    {
-      "id": 289215,
-      "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=289215&type=card",
-      "name": "Druid's Deliverance"
-    },
-    {
-      "id": 253651,
-      "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=253651&type=card",
-      "name": "Selesnya Charm"
-    },
-    {
-      "id": 253651,
-      "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=253651&type=card",
-      "name": "Selesnya Charm"
-    },
-    {
-      "id": 249422,
-      "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=249422&type=card",
-      "name": "Séance"
-    },
-    {
-      "id": 249422,
-      "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=249422&type=card",
-      "name": "Séance"
-    },
-    {
-      "id": 369012,
-      "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=369012&type=card",
-      "name": "Wake the Reflections"
-    },
-    {
-      "id": 369012,
-      "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=369012&type=card",
-      "name": "Wake the Reflections"
-    }
-  ]
-}
+[
+  {
+    "library": [
+      {
+        "id": 270957,
+        "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=270957&type=card",
+        "name": "Growing Ranks"
+      },
+      {
+        "id": 270957,
+        "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=270957&type=card",
+        "name": "Growing Ranks"
+      },
+      {
+        "id": 289215,
+        "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=289215&type=card",
+        "name": "Druid's Deliverance"
+      },
+      {
+        "id": 289215,
+        "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=289215&type=card",
+        "name": "Druid's Deliverance"
+      },
+      {
+        "id": 253651,
+        "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=253651&type=card",
+        "name": "Selesnya Charm"
+      },
+      {
+        "id": 253651,
+        "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=253651&type=card",
+        "name": "Selesnya Charm"
+      },
+      {
+        "id": 249422,
+        "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=249422&type=card",
+        "name": "Séance"
+      },
+      {
+        "id": 249422,
+        "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=249422&type=card",
+        "name": "Séance"
+      },
+      {
+        "id": 369012,
+        "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=369012&type=card",
+        "name": "Wake the Reflections"
+      },
+      {
+        "id": 369012,
+        "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=369012&type=card",
+        "name": "Wake the Reflections"
+      }
+    ]
+  },
+  {
+    "library": [
+      {
+        "id": 233074,
+        "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=233074&type=card",
+        "name": "Pristine Talisman"
+      },
+      {
+        "id": 417657,
+        "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417657&type=card",
+        "name": "Gonti, Lord of Luxury"
+      },
+      {
+        "id": 175124,
+        "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=175124&type=card",
+        "name": "Elvish Visionary"
+      },
+      {
+        "id": 204976,
+        "imageUrl": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=204976&type=card",
+        "name": "Sylvan Ranger"
+      }
+    ]
+  }
+]

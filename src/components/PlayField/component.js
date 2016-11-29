@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CardHolder from '../CardHolder';
 import Card from '../Card';
+import PlayfieldController from '../PlayfieldController';
 import './style.css';
 import { normalize } from './utils';
 
@@ -37,10 +38,10 @@ const holderList = [
 
 class PlayField extends Component {
 
-  renderHolderCards(holderName) {
+  renderHolderCards(playerNum, holderName) {
     const { playDeck } = this.props;
     const normalizeHolder = normalize(holderName);
-    const holderDeck = playDeck[normalizeHolder];
+    const holderDeck = playDeck[playerNum][normalizeHolder];
     if (!holderDeck) {
       return null;
     }
@@ -49,6 +50,7 @@ class PlayField extends Component {
       <Card
         key={card.deckId}
         data-holder-name={holderName}
+        player={playerNum}
         cardId={card.id}
         className='PlayField-card'
         deckId={card.deckId}
@@ -62,27 +64,19 @@ class PlayField extends Component {
     );
   }
 
-  renderController() {
-    return (
-      <div> 20 </div>
-    );
-  }
-
-  renderPlayField() {
+  renderPlayField(playerNum) {
     return (
       <div>
         <div className='PlayField-holder-container'>
           {
             holderList.map((holderObj, i) =>
-              <CardHolder className={holderObj.className} name={holderObj.name} key={i}>
-                { this.renderHolderCards(holderObj.name) }
+              <CardHolder className={holderObj.className} name={holderObj.name} key={i} player={playerNum}>
+                { this.renderHolderCards(playerNum, holderObj.name) }
               </CardHolder>
             )
           }
         </div>
-        {
-          this.renderController()
-        }
+        <PlayfieldController playerNum={playerNum} />
       </div>
     );
   }
@@ -90,7 +84,8 @@ class PlayField extends Component {
   render() {
     return (
       <div className='PlayField-container well'>
-        { this.renderPlayField() }
+        { this.renderPlayField(0) }
+        { this.renderPlayField(1) }
       </div>
     );
   }

@@ -4,6 +4,7 @@
 
 .PlayField-holder-container {
   width: 80%;
+  display: inline-block;
 }
 
 .PlayField-card {

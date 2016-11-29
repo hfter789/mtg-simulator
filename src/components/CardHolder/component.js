@@ -17,7 +17,10 @@ class CardHolder extends Component {
 
 const HolderTarget = {
   drop(props, monitor) {
-    return { holderName: props.name };
+    return {
+      holderName: props.name,
+      player: props.player,
+    };
   }
 };
 

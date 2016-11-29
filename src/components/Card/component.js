@@ -44,6 +44,7 @@ const cardSource = {
       deckId: props.deckId,
       imageUrl: props.imageUrl,
       name: props.name,
+      player: props.player,
     };
   },
 
@@ -55,8 +56,9 @@ const cardSource = {
     const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
     if (dropResult) {
-      props.addCardToHolder(item, dropResult.holderName);
-      props.removeCardFromHolder(item, card.props['data-holder-name']);
+      // we have to remove first since item is shared, this is not nice, will fix it later
+      props.removeCardFromHolder(item, card.props.player, card.props['data-holder-name']);
+      props.addCardToHolder(item, dropResult.player, dropResult.holderName);
     }
   }
 };

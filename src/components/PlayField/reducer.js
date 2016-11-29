@@ -59,10 +59,10 @@ export default (state = MOCK_CARD_DATA, action) => {
     }
     case PLAYFIELD_TOGGLE_TAP: {
       const cardObj = action.payload;
-      const { 'data-holder-name': holderName, deckId } = cardObj;
+      const { 'data-holder-name': holderName, deckId, player } = cardObj;
       if (holderName) {
         const normalizeHolder = normalize(holderName);
-        const targetHolder = state[normalizeHolder];
+        const targetHolder = state[+player][normalizeHolder];
         for (let i = 0; i < targetHolder.length; i++) {
           if (targetHolder[i].deckId === deckId) {
             targetHolder[i].isTapped = !targetHolder[i].isTapped;

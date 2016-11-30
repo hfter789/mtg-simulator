@@ -17,15 +17,15 @@ input {
     box-sizing: border-box;
 }
 
-.btn {
+/*.btn {
 	height: 35px;
 	width: 90px;
 	display: inline-block;
 	text-align: center;
-    vertical-align: bottom;
-    line-height: 39px;
-    border-radius: 3px;
-    cursor: pointer;
+  vertical-align: bottom;
+  line-height: 39px;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 .default-btn {
@@ -39,11 +39,29 @@ input {
 
 .default-btn:active {
 	background-color: #1976D2;
-}
+}*/
 
 .well {
   background-color: #181818;
   border-radius: 5px;
   box-shadow: 1px 1px 8px #333;
   padding-bottom: 15px;
+}
+
+.btn {
+  display: inline-block;
+  margin: 3px;
+  padding: 4px 15px;
+  cursor: pointer;
+  border-radius: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.primary-btn {
+  background-color: #2E2726;
+}
+
+.primary-btn:hover {
+  background-color: #000;
 }

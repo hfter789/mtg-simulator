@@ -102,6 +102,7 @@ class PlayField extends Component {
     return (
       <div className='PlayField-container well'>
         { this.renderPlayField(0) }
+        <hr className='PlayField-separator' />
         { this.renderPlayField(1) }
         { this.renderZoomInImage() }
       </div>

@@ -1,6 +1,12 @@
-.PlayField-controller {
+.Controller-container {
   display: inline-block;
   width: 20%;
   vertical-align: top;
+  padding-top: 10px;
   margin: 2px 0 0 0px;
+  user-select: none;
+}
+
+.Controller-life-container {
+  text-align: center;
 }

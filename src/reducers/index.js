@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import cardSearchReducer from './card-search-reducer';
-import playDeckReducer from '../components/PlayField/reducer';
-import gameStatReducer from '../components/PlayField/game-stat-reducer';
+import playDeckReducer from '../components/PlayField/play-deck-reducer';
+import gameStatsReducer from '../components/PlayfieldController/game-stats-reducer';
 import zoomInImageReducer from '../components/PlayField/zoomin-image-reducer';
 
 export default combineReducers({
   cardSearch: cardSearchReducer,
   playDeck: playDeckReducer,
-  gameStat: gameStatReducer,
+  gameStats: gameStatsReducer,
   zoomInImage: zoomInImageReducer,
 });

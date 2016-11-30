@@ -87,9 +87,14 @@ class PlayField extends Component {
     if (!coord || !cardProps) {
       return null;
     }
+    let {x, y} = coord;
+    console.log(y);
+    if (y > 400) {
+      y = 400;
+    }
     return <img className='PlayField-zoomin-image' src={cardProps.imageUrl} style={{
-      left: coord.x,
-      top: coord.y
+      left: x,
+      top: y
     }}/>
   }
 

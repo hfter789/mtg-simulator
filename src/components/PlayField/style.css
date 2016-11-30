@@ -1,4 +1,5 @@
 .PlayField-container {
+  position: relative;
   margin: 20px;
 }
 
@@ -13,6 +14,11 @@
   border-radius: 10px;
 }
 
+.PlayField-zoomin-image {
+  position: absolute;
+  height: 300px;
+  border-radius: 10px;
+}
 
 .card-holder {
   position: relative;

@@ -6,7 +6,9 @@ import { toggleTap } from './actions';
 
 export default connect(
   state => ({
-    playDeck: state.playDeck
+    playDeck: state.playDeck,
+    gameStat: state.gameStat,
+    zoomInImage: state.zoomInImage,
   }),
   dispatch => ({
     toggleTap: cardProps => dispatch(toggleTap(cardProps)),

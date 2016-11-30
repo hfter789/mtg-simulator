@@ -81,11 +81,24 @@ class PlayField extends Component {
     );
   }
 
+  renderZoomInImage() {
+    const { zoomInImage = {} } = this.props;
+    const { coord, props:cardProps } = zoomInImage;
+    if (!coord || !cardProps) {
+      return null;
+    }
+    return <img className='PlayField-zoomin-image' src={cardProps.imageUrl} style={{
+      left: coord.x,
+      top: coord.y
+    }}/>
+  }
+
   render() {
     return (
       <div className='PlayField-container well'>
         { this.renderPlayField(0) }
         { this.renderPlayField(1) }
+        { this.renderZoomInImage() }
       </div>
     );
   }

@@ -12,10 +12,20 @@ class Card extends Component {
       isTapped: false,
     };
     this.onImageClick = this.onImageClick.bind(this);
+    this.onMouseMove = this.onMouseMove.bind(this);
+    this.onMouseLeave = this.onMouseLeave.bind(this);
   }
 
   onImageClick() {
     this.props.toggleTap(this.props);
+  }
+
+  onMouseMove(e) {
+    this.props.showZoomInImage({x:e.clientX, y:e.clientY}, this.props);
+  }
+
+  onMouseLeave() {
+    this.props.removeZoomInImage();
   }
 
   render() {
@@ -32,6 +42,8 @@ class Card extends Component {
         alt={name}
         style={style}
         onClick={disableTap ? null : this.onImageClick}
+        onMouseMove={isFacedown ? null : this.onMouseMove }
+        onMouseLeave={isFacedown ? null : this.onMouseLeave }
       />
     );
   }

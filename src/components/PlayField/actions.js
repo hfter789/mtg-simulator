@@ -1,4 +1,4 @@
-import { PLAYFIELD_ADD_CARD, PLAYFIELD_REMOVE_CARD, PLAYFIELD_TOGGLE_TAP } from './constants';
+import { PLAYFIELD_ADD_CARD, PLAYFIELD_REMOVE_CARD, PLAYFIELD_TOGGLE_TAP, PLAYFIELD_SHOW_BIG_IMG } from './constants';
 
 export function addCardToHolder(cardObj, player, holderName) {
   return (dispatch) => {
@@ -31,6 +31,19 @@ export function toggleTap(props) {
     dispatch({
       type: PLAYFIELD_TOGGLE_TAP,
       payload: props,
+    })
+  };
+}
+
+export function showZoomInImage(coord, props) {
+  return (dispatch) => {
+    dispatch({
+      type: PLAYFIELD_SHOW_BIG_IMG,
+      payload: {
+        coord,
+        props,
+      }
+      ,
     })
   };
 }

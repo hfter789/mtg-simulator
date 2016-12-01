@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CardHolder from '../CardHolder';
 import Card from '../Card';
 import PlayfieldController from '../PlayfieldController';
+import CardMenu from '../CardMenu';
 import './style.css';
 import { normalize } from './utils';
 
@@ -49,10 +50,11 @@ class PlayField extends Component {
     return holderDeck.map((card, index) =>
       <Card
         key={card.deckId}
+        counter={card.counter}
         data-holder-name={holderName}
         player={playerNum}
         cardId={card.id}
-        className='PlayField-card'
+        className='card'
         deckId={card.deckId}
         disableTap={isLibrary}
         name={card.name}
@@ -81,6 +83,17 @@ class PlayField extends Component {
     );
   }
 
+  renderCardMenuOverlay() {
+    const { cardMenu } = this.props;
+    if (cardMenu && cardMenu.cardData) {
+      return (
+        <div className='PlayField-overlay'>
+          <CardMenu className='PlayField-card-menu well' />
+        </div>
+      )
+    }
+  }
+
   renderZoomInImage() {
     const { zoomInImage = {} } = this.props;
     const { coord, props:cardProps } = zoomInImage;
@@ -88,7 +101,6 @@ class PlayField extends Component {
       return null;
     }
     let {x, y} = coord;
-    console.log(y);
     if (y > 400) {
       y = 400;
     }
@@ -105,6 +117,7 @@ class PlayField extends Component {
         <hr className='PlayField-separator' />
         { this.renderPlayField(1) }
         { this.renderZoomInImage() }
+        { this.renderCardMenuOverlay() }
       </div>
     );
   }

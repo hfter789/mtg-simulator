@@ -1,0 +1,28 @@
+.CardMenu-container {
+  padding: 5px;
+  width: 500px;
+  height: 300px;
+  user-select: none;
+  background-color: #181818;
+}
+
+.CardMenu-items {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+  height: 100%;
+  margin-left: 10px;
+}
+
+.CardMenu-buttons {
+  margin-top: 3px;
+}
+
+.CardMenu-small-input {
+  width: 30px;
+  padding: 0;
+  background: #2E2726;
+  border: 0;
+  color: #fff;
+  text-align: center;
+}

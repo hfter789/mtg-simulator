@@ -21,8 +21,8 @@ class PlayfieldController extends Component {
         <p>Life Points</p>
         {gameStats[playerNum].life}
         &nbsp;&nbsp;
-        <Button label='-' onClick={this.decrementLife}/>
-        <Button label='+' onClick={this.incrementLife}/>
+        <Button label='-' onClick={this.decrementLife} primary />
+        <Button label='+' onClick={this.incrementLife} primary />
       </div>
     );
   }

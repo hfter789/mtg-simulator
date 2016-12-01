@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+*:focus {
+    outline: none;
+}
+
 body {
   font-family: sans-serif;
   background-color: #2F6545;
@@ -12,9 +16,9 @@ body {
 
 input {
 	height: 35px;
-    width: 250px;
-    padding-left: 10px;
-    box-sizing: border-box;
+  width: 250px;
+  padding-left: 10px;
+  box-sizing: border-box;
 }
 
 /*.btn {
@@ -42,7 +46,6 @@ input {
 }*/
 
 .well {
-  background-color: #181818;
   border-radius: 5px;
   box-shadow: 1px 1px 8px #333;
   padding-bottom: 15px;
@@ -50,7 +53,7 @@ input {
 
 .btn {
   display: inline-block;
-  margin: 3px;
+  margin-right: 3px;
   padding: 4px 15px;
   cursor: pointer;
   border-radius: 2px;
@@ -64,4 +67,20 @@ input {
 
 .primary-btn:hover {
   background-color: #000;
+}
+
+.danger-btn {
+  background-color: #f44336;
+  border-color: #a6201c;
+}
+
+.danger-btn:hover {
+  background-color: #b7312d;
+  border-color: #a6201c;
+}
+
+.card {
+  height: 100%;
+  position: relative;
+  border-radius: 10px;
 }

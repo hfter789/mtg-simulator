@@ -14,6 +14,7 @@ class Card extends Component {
     this.onImageClick = this.onImageClick.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.onMouseLeave = this.onMouseLeave.bind(this);
+    this.handleRightClick = this.handleRightClick.bind(this);
   }
 
   onImageClick() {
@@ -28,23 +29,56 @@ class Card extends Component {
     this.props.removeZoomInImage();
   }
 
+  handleRightClick(e) {
+    e.preventDefault();
+    this.props.showCardMenu(this.props);
+  }
+
+  renderCounterOverlay() {
+    const { counter } = this.props;
+    if (!counter) {
+      return null;
+    }
+    return (
+      <div className='Card-counter-overlay'>
+        { counter.powCounter }
+        /
+        { counter.toughCounter }
+      </div>
+    );
+  }
+
   render() {
-    const { className, connectDragSource, disableTap, imageUrl, name, isDragging, isFacedown, isTapped, style } = this.props;
+    const {
+      className,
+      connectDragSource,
+      disableTap,
+      imageUrl,
+      name,
+      isDragging,
+      isFacedown,
+      isTapped,
+      style} = this.props;
+
     if (isDragging) {
       return null;
     }
     return connectDragSource(
-      <img
-        className={classNames(className, {
-          'Card-rotated': isTapped
-        })}
-        src={isFacedown ? mtgCardBack : imageUrl}
-        alt={name}
-        style={style}
-        onClick={disableTap ? null : this.onImageClick}
-        onMouseMove={isFacedown ? null : this.onMouseMove }
-        onMouseLeave={isFacedown ? null : this.onMouseLeave }
-      />
+      <div className='Card-container'>
+        <img
+          className={classNames(className, {
+            'Card-rotated': isTapped
+          })}
+          src={isFacedown ? mtgCardBack : imageUrl}
+          alt={name}
+          style={style}
+          onClick={disableTap ? null : this.onImageClick}
+          onMouseMove={isFacedown ? null : this.onMouseMove }
+          onMouseLeave={isFacedown ? null : this.onMouseLeave }
+          onContextMenu={this.handleRightClick}
+        />
+        { this.renderCounterOverlay() }
+      </div>
     );
   }
 }

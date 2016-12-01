@@ -1,6 +1,6 @@
 import { shuffleArray, normalize } from './utils';
 import MOCK_CARD_DATA from './mock-card-data.json';
-import { PLAYFIELD_ADD_CARD, PLAYFIELD_REMOVE_CARD, PLAYFIELD_TOGGLE_TAP } from './constants';
+import { PLAYFIELD_ADD_CARD, PLAYFIELD_REMOVE_CARD, PLAYFIELD_TOGGLE_TAP, UPDATE_CARD_COUNTER } from './constants';
 
 MOCK_CARD_DATA[0].library = shuffleArray(MOCK_CARD_DATA[0].library);
 MOCK_CARD_DATA[0].library = MOCK_CARD_DATA[0].library.map((card, index) => ({
@@ -66,6 +66,22 @@ export default (state = MOCK_CARD_DATA, action) => {
         for (let i = 0; i < targetHolder.length; i++) {
           if (targetHolder[i].deckId === deckId) {
             targetHolder[i].isTapped = !targetHolder[i].isTapped;
+            return Object.assign([], state);
+          }
+        }
+      }
+      return state || {};
+    }
+
+    case UPDATE_CARD_COUNTER: {
+      const { cardObj, counterData } = action.payload;
+      const { 'data-holder-name': holderName, deckId, player } = cardObj;
+      if (holderName) {
+        const normalizeHolder = normalize(holderName);
+        const targetHolder = state[+player][normalizeHolder];
+        for (let i = 0; i < targetHolder.length; i++) {
+          if (targetHolder[i].deckId === deckId) {
+            targetHolder[i].counter = counterData;
             return Object.assign([], state);
           }
         }

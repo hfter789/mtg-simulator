@@ -1,0 +1,2 @@
+export const OPEN_CARD_MENU = 'OPEN_CARD_MENU';
+export const CLOSE_CARD_MENU = 'CLOSE_CARD_MENU';

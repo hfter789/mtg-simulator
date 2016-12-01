@@ -1,11 +1,15 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 import './style.css';
 
 class Button extends Component {
   render() {
-    const { label } = this.props;
+    const { label, primary, danger } = this.props;
     return (
-      <div className='btn primary-btn' onClick={this.props.onClick}>{label}</div>
+      <div className={classNames('btn', {
+        'primary-btn': primary,
+        'danger-btn': danger,
+      })} onClick={this.props.onClick}>{label}</div>
     );
   }
 }

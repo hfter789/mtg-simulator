@@ -1,3 +1,16 @@
+.Card-container {
+  height: 100%;
+  display: inline-block;
+  position: relative;
+}
+
 .Card-rotated {
   transform: rotate(90deg);
+}
+
+.Card-counter-overlay {
+  position: absolute;
+  bottom: 10px;
+  right: 5px;
+  color: #000;
 }

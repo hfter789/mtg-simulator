@@ -6,6 +6,7 @@ import { toggleTap } from './actions';
 
 export default connect(
   state => ({
+    cardMenu: state.cardMenu,
     playDeck: state.playDeck,
     gameStat: state.gameStat,
     zoomInImage: state.zoomInImage,

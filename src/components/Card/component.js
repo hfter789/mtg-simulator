@@ -48,6 +48,16 @@ class Card extends Component {
     );
   }
 
+  renderToken() {
+    const { tokenDesc, tokenName } = this.props;
+    return (
+      <div className='Card-token' onContextMenu={this.handleRightClick}>
+        <p><b>{tokenName}</b></p>
+        {tokenDesc}
+      </div>
+    );
+  }
+
   render() {
     const {
       className,
@@ -55,28 +65,35 @@ class Card extends Component {
       disableTap,
       imageUrl,
       name,
+      isToken,
       isDragging,
       isFacedown,
       isTapped,
-      style} = this.props;
+      style
+    } = this.props;
 
     if (isDragging) {
       return null;
     }
     return connectDragSource(
       <div className='Card-container'>
-        <img
-          className={classNames(className, {
-            'Card-rotated': isTapped
-          })}
-          src={isFacedown ? mtgCardBack : imageUrl}
-          alt={name}
-          style={style}
-          onClick={disableTap ? null : this.onImageClick}
-          onMouseMove={isFacedown ? null : this.onMouseMove }
-          onMouseLeave={isFacedown ? null : this.onMouseLeave }
-          onContextMenu={this.handleRightClick}
-        />
+        {
+          isToken ?
+          this.renderToken()
+          :
+          <img
+            className={classNames(className, {
+              'Card-rotated': isTapped
+            })}
+            src={isFacedown ? mtgCardBack : imageUrl}
+            alt={name}
+            style={style}
+            onClick={disableTap ? null : this.onImageClick}
+            onMouseMove={isFacedown ? null : this.onMouseMove }
+            onMouseLeave={isFacedown ? null : this.onMouseLeave }
+            onContextMenu={this.handleRightClick}
+          />
+        }
         { this.renderCounterOverlay() }
       </div>
     );
@@ -91,6 +108,10 @@ const cardSource = {
       imageUrl: props.imageUrl,
       name: props.name,
       player: props.player,
+      tokenName: props.tokenName,
+      tokenDesc: props.tokenDesc,
+      isToken: props.isToken,
+      counter: props.counter,
     };
   },
 

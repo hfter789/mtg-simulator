@@ -8,6 +8,15 @@
   transform: rotate(90deg);
 }
 
+.Card-token {
+  height: 100%;
+  width: 65px;
+  background-color: #eee;
+  border-radius: 5px;
+  color: black;
+  font-size: 11px;
+}
+
 .Card-counter-overlay {
   position: absolute;
   bottom: 10px;

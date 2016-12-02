@@ -5,8 +5,13 @@
   padding-top: 10px;
   margin: 2px 0 0 0px;
   user-select: none;
+  text-align: center;
 }
 
 .Controller-life-container {
-  text-align: center;
+  margin: 10px 0px;
+}
+
+.Controller-life-title {
+  margin-bottom: 5px;
 }

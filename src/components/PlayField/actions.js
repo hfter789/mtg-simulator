@@ -1,4 +1,4 @@
-import { PLAYFIELD_ADD_CARD, PLAYFIELD_REMOVE_CARD, PLAYFIELD_TOGGLE_TAP, PLAYFIELD_SHOW_BIG_IMG, UPDATE_CARD_COUNTER } from './constants';
+import { PLAYFIELD_ADD_CARD, PLAYFIELD_REMOVE_CARD, PLAYFIELD_TOGGLE_TAP, PLAYFIELD_SHOW_BIG_IMG, PLAYFIELD_UPDATE_CARD } from './constants';
 
 export function addCardToHolder(cardObj, player, holderName) {
   return (dispatch) => {
@@ -48,13 +48,15 @@ export function showZoomInImage(coord, props) {
   };
 }
 
-export function updateCardCounter(cardObj, counterData) {
+export function updateCard(cardObj, counterData, tokenName, tokenDesc) {
   return (dispatch) => {
     dispatch({
-      type: UPDATE_CARD_COUNTER,
+      type: PLAYFIELD_UPDATE_CARD,
       payload: {
         cardObj,
         counterData,
+        tokenName,
+        tokenDesc
       }
     })
   };

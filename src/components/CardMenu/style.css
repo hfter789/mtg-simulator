@@ -20,9 +20,21 @@
 
 .CardMenu-small-input {
   width: 30px;
+}
+
+.CardMenu-input {
   padding: 0;
   background: #2E2726;
   border: 0;
   color: #fff;
   text-align: center;
+  margin: 5px 0px;
+}
+
+.CardMenu-token-card {
+  display: inline-block;
+  height: 100%;
+  width: 45%;
+  text-align: center;
+  padding-top: 120px;
 }

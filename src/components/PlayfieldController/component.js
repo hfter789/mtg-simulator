@@ -8,17 +8,26 @@ class PlayfieldController extends Component {
     super(props);
     this.incrementLife = this.updateLifeCounter.bind(this, 1);
     this.decrementLife = this.updateLifeCounter.bind(this, -1);
+    this.createToken = this.createToken.bind(this);
   }
 
   updateLifeCounter(life) {
     this.props.updateLifeCounter(this.props.playerNum, life);
   }
 
+  createToken() {
+    this.props.showCardMenu({
+      player: this.props.playerNum,
+      isToken: true,
+      isNew: true,
+    });
+  }
+
   renderLifePointController() {
     const { gameStats, playerNum } = this.props;
     return (
       <div className='Controller-life-container'>
-        <p>Life Points</p>
+        <p className='Controller-life-title'>Life Points</p>
         {gameStats[playerNum].life}
         &nbsp;&nbsp;
         <Button label='-' onClick={this.decrementLife} primary />
@@ -31,6 +40,7 @@ class PlayfieldController extends Component {
     return (
       <div className='Controller-container'>
         { this.renderLifePointController() }
+        <Button label='Add Token' onClick={this.createToken} primary />
       </div>
     )
   }

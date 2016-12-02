@@ -51,6 +51,9 @@ class PlayField extends Component {
       <Card
         key={card.deckId}
         counter={card.counter}
+        isToken={card.isToken}
+        tokenName={card.tokenName}
+        tokenDesc={card.tokenDesc}
         data-holder-name={holderName}
         player={playerNum}
         cardId={card.id}

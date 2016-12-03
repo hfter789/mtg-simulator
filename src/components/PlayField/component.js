@@ -40,7 +40,7 @@ const holderList = [
 class PlayField extends Component {
 
   renderHolderCards(playerNum, holderName) {
-    const { playDeck } = this.props;
+    const { playDeck, playField } = this.props;
     const normalizeHolder = normalize(holderName);
     const holderDeck = playDeck[playerNum][normalizeHolder];
     if (!holderDeck) {
@@ -62,7 +62,7 @@ class PlayField extends Component {
         disableTap={isLibrary}
         name={card.name}
         imageUrl={card.imageUrl}
-        isFacedown={isLibrary}
+        isFacedown={isLibrary && !playField.isLibraryReveal[playerNum]}
         isTapped={card.isTapped}
         toggleTap={this.props.toggleTap}
       />
@@ -98,7 +98,7 @@ class PlayField extends Component {
   }
 
   renderZoomInImage() {
-    const { zoomInImage = {} } = this.props;
+    const { zoomInImage={} } = this.props.playField;
     const { coord, props:cardProps } = zoomInImage;
     if (!coord || !cardProps) {
       return null;

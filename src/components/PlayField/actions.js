@@ -4,7 +4,8 @@ import { PLAYFIELD_ADD_CARD,
   PLAYFIELD_SHOW_BIG_IMG,
   PLAYFIELD_UPDATE_CARD,
   SHUFFLE_DECK,
-  PLAYFIELD_TOP_CARD_TO_BOT
+  PLAYFIELD_TOP_CARD_TO_BOT,
+  PLAYFIELD_TOGGLE_REVEAL
   } from './constants';
 
 export function addCardToHolder(cardObj, player, holderName) {
@@ -48,6 +49,17 @@ export function putTopToBottom(playerNum) {
   return (dispatch) => {
     dispatch({
       type: PLAYFIELD_TOP_CARD_TO_BOT,
+      payload: {
+        playerNum,
+      }
+    });
+  }
+}
+
+export function toggleLibReveal(playerNum) {
+  return (dispatch) => {
+    dispatch({
+      type: PLAYFIELD_TOGGLE_REVEAL,
       payload: {
         playerNum,
       }

@@ -66,7 +66,7 @@ export default (state = MOCK_CARD_DATA, action) => {
         }
         return Object.assign([], state);
       }
-      return state || {};
+      return state || [];
     }
     case PLAYFIELD_TOGGLE_TAP: {
       const cardObj = action.payload;
@@ -81,7 +81,7 @@ export default (state = MOCK_CARD_DATA, action) => {
           }
         }
       }
-      return state || {};
+      return state || [];
     }
 
     case PLAYFIELD_UPDATE_CARD: {
@@ -120,7 +120,7 @@ export default (state = MOCK_CARD_DATA, action) => {
           }
         }
       }
-      return state || {};
+      return state || [];
     }
     case SHUFFLE_DECK: {
       const { playerNum } = action.payload;
@@ -132,6 +132,6 @@ export default (state = MOCK_CARD_DATA, action) => {
       state[playerNum].library.push(state[playerNum].library.shift());
       return Object.assign([], state);
     }
-    default: return state || {};
+    default: return state || [];
   }
 };

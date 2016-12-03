@@ -9,7 +9,7 @@ export default connect(
     cardMenu: state.cardMenu,
     playDeck: state.playDeck,
     gameStat: state.gameStat,
-    zoomInImage: state.zoomInImage,
+    playField: state.playField,
   }),
   dispatch => ({
     toggleTap: cardProps => dispatch(toggleTap(cardProps)),

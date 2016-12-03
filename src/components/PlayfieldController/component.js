@@ -37,10 +37,12 @@ class PlayfieldController extends Component {
   }
 
   render() {
+    const { playerNum, shuffleDeck } = this.props;
     return (
       <div className='Controller-container'>
         { this.renderLifePointController() }
         <Button label='Add Token' onClick={this.createToken} primary />
+        <Button label='Shuffle' onClick={shuffleDeck.bind(null, playerNum)} secondary />
       </div>
     )
   }

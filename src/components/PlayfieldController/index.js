@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import component from './component';
 import { updateLifeCounter } from './actions';
 import { showCardMenu } from '../CardMenu/actions';
+import { shuffleDeck } from '../PlayField/actions';
 
 export default connect(
   state => ({
@@ -10,5 +11,6 @@ export default connect(
   dispatch => ({
     updateLifeCounter: (playerNum, change) => dispatch(updateLifeCounter(playerNum, change)),
     showCardMenu: (cardProps) => dispatch(showCardMenu(cardProps)),
+    shuffleDeck: (playerNum) => dispatch(shuffleDeck(playerNum)),
   }),
 )(component);

@@ -69,6 +69,15 @@ input {
   background-color: #000;
 }
 
+.secondary-btn {
+  background-color: #2F6545;
+  border-color: #1e5434;
+}
+
+.secondary-btn:hover {
+  background-color: #1f422d;
+}
+
 .danger-btn {
   background-color: #f44336;
   border-color: #a6201c;

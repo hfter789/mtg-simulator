@@ -1,6 +1,10 @@
 import { shuffleArray, normalize } from './utils';
 import MOCK_CARD_DATA from './mock-card-data.json';
-import { PLAYFIELD_ADD_CARD, PLAYFIELD_REMOVE_CARD, PLAYFIELD_TOGGLE_TAP, PLAYFIELD_UPDATE_CARD } from './constants';
+import { PLAYFIELD_ADD_CARD,
+  PLAYFIELD_REMOVE_CARD,
+  PLAYFIELD_TOGGLE_TAP,
+  PLAYFIELD_UPDATE_CARD,
+  SHUFFLE_DECK } from './constants';
 
 MOCK_CARD_DATA[0].library = shuffleArray(MOCK_CARD_DATA[0].library);
 MOCK_CARD_DATA[0].library = MOCK_CARD_DATA[0].library.map((card, index) => ({
@@ -79,7 +83,6 @@ export default (state = MOCK_CARD_DATA, action) => {
     }
 
     case PLAYFIELD_UPDATE_CARD: {
-      debugger;
       const { cardObj, counterData, tokenDesc, tokenName } = action.payload;
       let { 'data-holder-name': holderName, deckId, player } = cardObj;
       if (cardObj.isNew) {
@@ -116,6 +119,11 @@ export default (state = MOCK_CARD_DATA, action) => {
         }
       }
       return state || {};
+    }
+    case SHUFFLE_DECK: {
+      const { playerNum } = action.payload;
+      state[playerNum].library = shuffleArray(state[playerNum].library);
+      return Object.assign([], state);
     }
     default: return state || {};
   }

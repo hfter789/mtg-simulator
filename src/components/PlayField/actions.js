@@ -1,4 +1,9 @@
-import { PLAYFIELD_ADD_CARD, PLAYFIELD_REMOVE_CARD, PLAYFIELD_TOGGLE_TAP, PLAYFIELD_SHOW_BIG_IMG, PLAYFIELD_UPDATE_CARD } from './constants';
+import { PLAYFIELD_ADD_CARD,
+  PLAYFIELD_REMOVE_CARD,
+  PLAYFIELD_TOGGLE_TAP,
+  PLAYFIELD_SHOW_BIG_IMG,
+  PLAYFIELD_UPDATE_CARD,
+  SHUFFLE_DECK } from './constants';
 
 export function addCardToHolder(cardObj, player, holderName) {
   return (dispatch) => {
@@ -21,6 +26,17 @@ export function removeCardFromHolder(cardObj, player, holderName) {
         cardObj,
         player,
         holderName,
+      }
+    });
+  }
+}
+
+export function shuffleDeck(playerNum) {
+  return (dispatch) => {
+    dispatch({
+      type: SHUFFLE_DECK,
+      payload: {
+        playerNum,
       }
     });
   }

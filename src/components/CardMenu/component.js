@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import Button from '../Button';
 import './style.css';
@@ -34,7 +34,7 @@ class CardMenu extends Component {
           cardData.isToken ?
           <div className='CardMenu-token-card'>Token</div>
           :
-          <img className='card' src={cardData.imageUrl} />
+          <img className='card' src={cardData.imageUrl} role='presentation' />
         }
         <div className='CardMenu-items'>
           {

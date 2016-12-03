@@ -3,7 +3,9 @@ import { PLAYFIELD_ADD_CARD,
   PLAYFIELD_TOGGLE_TAP,
   PLAYFIELD_SHOW_BIG_IMG,
   PLAYFIELD_UPDATE_CARD,
-  SHUFFLE_DECK } from './constants';
+  SHUFFLE_DECK,
+  PLAYFIELD_TOP_CARD_TO_BOT
+  } from './constants';
 
 export function addCardToHolder(cardObj, player, holderName) {
   return (dispatch) => {
@@ -35,6 +37,17 @@ export function shuffleDeck(playerNum) {
   return (dispatch) => {
     dispatch({
       type: SHUFFLE_DECK,
+      payload: {
+        playerNum,
+      }
+    });
+  }
+}
+
+export function putTopToBottom(playerNum) {
+  return (dispatch) => {
+    dispatch({
+      type: PLAYFIELD_TOP_CARD_TO_BOT,
       payload: {
         playerNum,
       }

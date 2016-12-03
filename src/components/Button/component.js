@@ -4,9 +4,9 @@ import './style.css';
 
 class Button extends Component {
   render() {
-    const { label, primary, secondary, danger } = this.props;
+    const { className, label, primary, secondary, danger } = this.props;
     return (
-      <div className={classNames('btn', {
+      <div className={classNames('btn', className, {
         'primary-btn': primary,
         'secondary-btn': secondary,
         'danger-btn': danger,

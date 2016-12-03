@@ -21,29 +21,9 @@ input {
   box-sizing: border-box;
 }
 
-/*.btn {
-	height: 35px;
-	width: 90px;
-	display: inline-block;
-	text-align: center;
-  vertical-align: bottom;
-  line-height: 39px;
-  border-radius: 3px;
-  cursor: pointer;
+.mg-top-5 {
+  margin-top: 5px;
 }
-
-.default-btn {
-	background-color: rgb(33, 150, 243);
-	color: white;
-}
-
-.default-btn:hover {
-	background-color: rgba(33, 150, 243, .8);
-}
-
-.default-btn:active {
-	background-color: #1976D2;
-}*/
 
 .well {
   border-radius: 5px;
@@ -57,7 +37,6 @@ input {
   padding: 4px 15px;
   cursor: pointer;
   border-radius: 2px;
-  text-transform: uppercase;
   text-decoration: none;
 }
 

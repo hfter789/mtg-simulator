@@ -4,7 +4,9 @@ import { PLAYFIELD_ADD_CARD,
   PLAYFIELD_REMOVE_CARD,
   PLAYFIELD_TOGGLE_TAP,
   PLAYFIELD_UPDATE_CARD,
-  SHUFFLE_DECK } from './constants';
+  SHUFFLE_DECK,
+  PLAYFIELD_TOP_CARD_TO_BOT
+  } from './constants';
 
 MOCK_CARD_DATA[0].library = shuffleArray(MOCK_CARD_DATA[0].library);
 MOCK_CARD_DATA[0].library = MOCK_CARD_DATA[0].library.map((card, index) => ({
@@ -39,7 +41,7 @@ export default (state = MOCK_CARD_DATA, action) => {
       // we use the holder's player id instead
       const { holderName, cardObj, player } = action.payload;
       const normalizeHolder = normalize(holderName);
-      if (normalizeHolder === 'graveyard' || normalizeHolder === 'exile' && cardObj.isToken) {
+      if ((normalizeHolder === 'graveyard' || normalizeHolder === 'exile') && cardObj.isToken) {
         return state;
       }
       const targetHolder = state[+player][normalizeHolder] || [];
@@ -123,6 +125,11 @@ export default (state = MOCK_CARD_DATA, action) => {
     case SHUFFLE_DECK: {
       const { playerNum } = action.payload;
       state[playerNum].library = shuffleArray(state[playerNum].library);
+      return Object.assign([], state);
+    }
+    case PLAYFIELD_TOP_CARD_TO_BOT: {
+      const { playerNum } = action.payload;
+      state[playerNum].library.push(state[playerNum].library.shift());
       return Object.assign([], state);
     }
     default: return state || {};

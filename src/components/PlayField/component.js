@@ -110,7 +110,7 @@ class PlayField extends Component {
     return <img className='PlayField-zoomin-image' src={cardProps.imageUrl} style={{
       left: x,
       top: y
-    }}/>
+    }} role='presentation' />
   }
 
   render() {

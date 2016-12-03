@@ -37,19 +37,20 @@ class PlayfieldController extends Component {
   }
 
   render() {
-    const { playerNum, shuffleDeck } = this.props;
+    const { playerNum, shuffleDeck, putTopToBottom } = this.props;
     return (
       <div className='Controller-container'>
         { this.renderLifePointController() }
         <Button label='Add Token' onClick={this.createToken} primary />
-        <Button label='Shuffle' onClick={shuffleDeck.bind(null, playerNum)} secondary />
+        <Button className='mg-top-5' label='Shuffle' onClick={shuffleDeck.bind(null, playerNum)} secondary />
+        <Button className='mg-top-5' label='ToptoBottom' onClick={putTopToBottom.bind(null, playerNum)} secondary />
       </div>
-    )
+    );
   }
 }
 
 PlayfieldController.propTypes = {
   playerNum: PropTypes.number.isRequired,
-}
+};
 
 export default PlayfieldController;

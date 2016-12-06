@@ -1,5 +1,6 @@
 .Card-container {
   height: 100%;
+  vertical-align: top;
   display: inline-block;
   position: relative;
 }

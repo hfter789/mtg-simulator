@@ -49,9 +49,14 @@ class Card extends Component {
   }
 
   renderToken() {
-    const { tokenDesc, tokenName } = this.props;
+    const { tokenDesc, tokenName, disableTap, isTapped } = this.props;
     return (
-      <div className='Card-token' onContextMenu={this.handleRightClick}>
+      <div className={classNames('Card-token', {
+          'Card-rotated': isTapped
+        })}
+        onContextMenu={this.handleRightClick}
+        onClick={disableTap ? null : this.onImageClick}
+      >
         <p><b>{tokenName}</b></p>
         {tokenDesc}
       </div>

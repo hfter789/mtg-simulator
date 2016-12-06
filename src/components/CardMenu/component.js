@@ -12,11 +12,11 @@ class CardMenu extends Component {
   }
 
   submitUpdate() {
-    let { powCounter, toughCounter, tokenName, tokenDesc } = this.state;
-    let { cardMenu } = this.props;
-    const { cardData } = cardMenu;
-    powCounter = +powCounter;
-    toughCounter = +toughCounter;
+    const { cardMenu: { cardData } } = this.props;
+    const { tokenName: oldTokenName, tokenDesc: oldTokenDesc, counter: oldCounter={} } = cardData;
+    let { powCounter, toughCounter, tokenName=oldTokenName, tokenDesc=oldTokenDesc } = this.state;
+    powCounter = +powCounter || oldCounter.powCounter || 0;
+    toughCounter = +toughCounter || oldCounter.toughCounter || 0;
     let counter = null
     if (powCounter || toughCounter) {
       counter = {powCounter, toughCounter};
@@ -28,6 +28,7 @@ class CardMenu extends Component {
   render() {
     const { className, cardMenu } = this.props;
     const { cardData } = cardMenu;
+    const { tokenName, tokenDesc, counter={} } = cardData;
     return (
       <div className={classNames(className, 'CardMenu-container')}>
         {
@@ -40,7 +41,8 @@ class CardMenu extends Component {
           {
             cardData.isToken ?
             <input
-            className='CardMenu-input'
+              className='CardMenu-input'
+              defaultValue={tokenName || ''}
               placeholder='Name'
               onChange={(e) => { this.setState({tokenName: e.target.value})}}
             />
@@ -50,19 +52,22 @@ class CardMenu extends Component {
           <p>Counter:</p>
           <input
             className='CardMenu-small-input CardMenu-input'
+            defaultValue={counter.powCounter}
             placeholder='power'
             onChange={(e) => { this.setState({powCounter: e.target.value})}}
           />
           &nbsp;/&nbsp;
           <input
             className='CardMenu-small-input CardMenu-input'
+            defaultValue={counter.toughCounter}
             placeholder='toughness'
             onChange={(e) => { this.setState({toughCounter: e.target.value})}}
           />
           {
             cardData.isToken ?
             <input
-            className='CardMenu-input'
+              className='CardMenu-input'
+              defaultValue={tokenDesc || ''}
               placeholder='Description'
               onChange={(e) => { this.setState({tokenDesc: e.target.value})}}
             />

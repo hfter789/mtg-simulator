@@ -1,5 +1,6 @@
 import { shuffleArray, normalize } from './utils';
-import MOCK_CARD_DATA from './mock-card-data.json';
+import MOCK_CARD_DATA1 from '../../../decks/life.json';
+import MOCK_CARD_DATA2 from '../../../decks/token.json';
 import { PLAYFIELD_ADD_CARD,
   PLAYFIELD_REMOVE_CARD,
   PLAYFIELD_TOGGLE_TAP,
@@ -8,6 +9,7 @@ import { PLAYFIELD_ADD_CARD,
   PLAYFIELD_TOP_CARD_TO_BOT
   } from './constants';
 
+const MOCK_CARD_DATA = [{library: MOCK_CARD_DATA1}, {library: MOCK_CARD_DATA2}];
 MOCK_CARD_DATA[0].library = shuffleArray(MOCK_CARD_DATA[0].library);
 MOCK_CARD_DATA[0].library = MOCK_CARD_DATA[0].library.map((card, index) => ({
   id: card.id,

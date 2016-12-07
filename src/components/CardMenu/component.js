@@ -14,9 +14,9 @@ class CardMenu extends Component {
   }
 
   submitUpdate() {
-    debugger;
     const { cardMenu: { cardData } } = this.props;
-    const { tokenName: oldTokenName, tokenDesc: oldTokenDesc, counter: oldCounter={} } = cardData;
+    let { tokenName: oldTokenName, tokenDesc: oldTokenDesc, counter: oldCounter } = cardData;
+    oldCounter = oldCounter || {};
     let { powCounter, toughCounter, tokenName=oldTokenName, tokenDesc=oldTokenDesc } = this.state;
     powCounter = +powCounter || oldCounter.powCounter || 0;
     toughCounter = +toughCounter || oldCounter.toughCounter || 0;
@@ -36,7 +36,8 @@ class CardMenu extends Component {
   render() {
     const { className, cardMenu } = this.props;
     const { cardData } = cardMenu;
-    const { tokenName, tokenDesc, counter={} } = cardData;
+    let { tokenName, tokenDesc, counter } = cardData;
+    counter = counter || {};
     return (
       <div className={classNames(className, 'CardMenu-container')}>
         {

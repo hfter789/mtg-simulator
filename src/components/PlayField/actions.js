@@ -5,7 +5,8 @@ import { PLAYFIELD_ADD_CARD,
   PLAYFIELD_UPDATE_CARD,
   SHUFFLE_DECK,
   PLAYFIELD_TOP_CARD_TO_BOT,
-  PLAYFIELD_TOGGLE_REVEAL
+  PLAYFIELD_TOGGLE_REVEAL,
+  PLAYFIELD_UNTAP_ALL,
   } from './constants';
 
 export function addCardToHolder(cardObj, player, holderName) {
@@ -49,6 +50,17 @@ export function putTopToBottom(playerNum) {
   return (dispatch) => {
     dispatch({
       type: PLAYFIELD_TOP_CARD_TO_BOT,
+      payload: {
+        playerNum,
+      }
+    });
+  }
+}
+
+export function untapAll(playerNum) {
+  return (dispatch) => {
+    dispatch({
+      type: PLAYFIELD_UNTAP_ALL,
       payload: {
         playerNum,
       }

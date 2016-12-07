@@ -28,10 +28,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route
-        path='deckmanager'
-        component={App} />
-      <Route
-        path='playfield'
+        path='/'
         component={PlayField} />
     </Router>
   </Provider>

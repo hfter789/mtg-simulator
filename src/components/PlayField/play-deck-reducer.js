@@ -6,7 +6,8 @@ import { PLAYFIELD_ADD_CARD,
   PLAYFIELD_TOGGLE_TAP,
   PLAYFIELD_UPDATE_CARD,
   SHUFFLE_DECK,
-  PLAYFIELD_TOP_CARD_TO_BOT
+  PLAYFIELD_TOP_CARD_TO_BOT,
+  PLAYFIELD_UNTAP_ALL,
   } from './constants';
 
 const MOCK_CARD_DATA = [{library: MOCK_CARD_DATA1}, {library: MOCK_CARD_DATA2}];
@@ -132,6 +133,16 @@ export default (state = MOCK_CARD_DATA, action) => {
     case PLAYFIELD_TOP_CARD_TO_BOT: {
       const { playerNum } = action.payload;
       state[playerNum].library.push(state[playerNum].library.shift());
+      return Object.assign([], state);
+    }
+    case PLAYFIELD_UNTAP_ALL: {
+      const { playerNum } = action.payload;
+      const cardMap = state[playerNum];
+      Object.keys(cardMap).forEach(cardMapKey => {
+        cardMap[cardMapKey].forEach(card => {
+          card.isTapped = false;
+        });
+      });
       return Object.assign([], state);
     }
     default: return state || [];

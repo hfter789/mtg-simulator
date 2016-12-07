@@ -1,9 +1,7 @@
 BUG:
-token are not align when a card is in the same holder
 
 backlog:
-untap all cards for that player
-reset game
-poison counter
 Review top n card of library; (Kind of working if we just drag the cards out to any holder and put them back)
 more compact card layout
+reset game
+poison counter

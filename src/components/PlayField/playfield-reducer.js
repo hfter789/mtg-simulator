@@ -11,7 +11,6 @@ export default (state = {
       };
     }
     case PLAYFIELD_TOGGLE_REVEAL: {
-      debugger;
       const { playerNum } = action.payload;
       state.isLibraryReveal[playerNum] = !state.isLibraryReveal[playerNum];
       return Object.assign({}, state);

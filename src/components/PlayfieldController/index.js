@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import component from './component';
 import { updateLifeCounter } from './actions';
 import { showCardMenu } from '../CardMenu/actions';
-import { shuffleDeck, putTopToBottom, toggleLibReveal } from '../PlayField/actions';
+import { shuffleDeck, putTopToBottom, toggleLibReveal, untapAll } from '../PlayField/actions';
 
 export default connect(
   state => ({
@@ -14,5 +14,6 @@ export default connect(
     shuffleDeck: (playerNum) => dispatch(shuffleDeck(playerNum)),
     putTopToBottom: (playerNum) => dispatch(putTopToBottom(playerNum)),
     toggleLibReveal: (playerNum) => dispatch(toggleLibReveal(playerNum)),
+    untapAll: (playerNum) => dispatch(untapAll(playerNum)),
   }),
 )(component);

@@ -8,6 +8,8 @@ import { PLAYFIELD_ADD_CARD,
   PLAYFIELD_TOGGLE_REVEAL,
   PLAYFIELD_UNTAP_ALL,
   PLAYFIELD_CLONE_CARD,
+  PLAYFIELD_DRAW_CARD,
+  PLAYFIELD_MULLIGAN,
   } from './constants';
 
 export function addCardToHolder(cardObj, player, holderName) {
@@ -47,6 +49,17 @@ export function shuffleDeck(playerNum) {
   }
 }
 
+export function mulligan(playerNum) {
+  return (dispatch) => {
+    dispatch({
+      type: PLAYFIELD_MULLIGAN,
+      payload: {
+        playerNum,
+      }
+    });
+  }
+}
+
 export function putTopToBottom(playerNum) {
   return (dispatch) => {
     dispatch({
@@ -73,6 +86,17 @@ export function toggleLibReveal(playerNum) {
   return (dispatch) => {
     dispatch({
       type: PLAYFIELD_TOGGLE_REVEAL,
+      payload: {
+        playerNum,
+      }
+    });
+  }
+}
+
+export function drawCard(playerNum) {
+  return (dispatch) => {
+    dispatch({
+      type: PLAYFIELD_DRAW_CARD,
       payload: {
         playerNum,
       }

@@ -9,6 +9,8 @@ import { PLAYFIELD_ADD_CARD,
   PLAYFIELD_TOP_CARD_TO_BOT,
   PLAYFIELD_UNTAP_ALL,
   PLAYFIELD_CLONE_CARD,
+  PLAYFIELD_DRAW_CARD,
+  PLAYFIELD_MULLIGAN,
   } from './constants';
 
 const MOCK_CARD_DATA = [{library: MOCK_CARD_DATA1}, {library: MOCK_CARD_DATA2}];
@@ -37,6 +39,7 @@ MOCK_CARD_DATA[1].library = MOCK_CARD_DATA[1].library.map((card, index) => ({
 }));
 
 let currentDeckId = [MOCK_CARD_DATA[0].library.length, MOCK_CARD_DATA[1].library.length];
+let mulliganCount = [7, 7];
 
 export default (state = MOCK_CARD_DATA, action) => {
   switch (action.type) {
@@ -137,6 +140,31 @@ export default (state = MOCK_CARD_DATA, action) => {
         ...cardObj,
         deckId,
       });
+      return Object.assign([], state);
+    }
+    case PLAYFIELD_DRAW_CARD: {
+      const { playerNum } = action.payload;
+      if (!state[playerNum].hand) {
+        state[playerNum].hand = [];
+      }
+      state[playerNum].hand.unshift(state[playerNum].library.shift());
+      return Object.assign([], state);
+    }
+    case PLAYFIELD_MULLIGAN: {
+      const { playerNum } = action.payload;
+      if (!state[playerNum].hand) {
+        state[playerNum].hand = [];
+      }
+      const oldHand = state[playerNum].hand;
+      state[playerNum].hand = [];
+      oldHand.forEach((cardObj) => {
+        state[playerNum].library.push(cardObj);
+      });
+      state[playerNum].library = shuffleArray(state[playerNum].library);
+      for (let i = 0; i < mulliganCount[playerNum]; i++) {
+        state[playerNum].hand.unshift(state[playerNum].library.shift());
+      }
+      mulliganCount[playerNum]--;
       return Object.assign([], state);
     }
     case SHUFFLE_DECK: {

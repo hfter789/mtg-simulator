@@ -7,6 +7,7 @@ import { PLAYFIELD_ADD_CARD,
   PLAYFIELD_TOP_CARD_TO_BOT,
   PLAYFIELD_TOGGLE_REVEAL,
   PLAYFIELD_UNTAP_ALL,
+  PLAYFIELD_CLONE_CARD,
   } from './constants';
 
 export function addCardToHolder(cardObj, player, holderName) {
@@ -110,6 +111,17 @@ export function updateCard(cardObj, counterData, tokenName, tokenDesc) {
         counterData,
         tokenName,
         tokenDesc
+      }
+    })
+  };
+}
+
+export function cloneCard(cardObj, counterData, tokenName, tokenDesc) {
+  return (dispatch) => {
+    dispatch({
+      type: PLAYFIELD_CLONE_CARD,
+      payload: {
+        cardObj,
       }
     })
   };

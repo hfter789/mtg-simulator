@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import get from 'lodash/get';
 import Button from '../Button';
 import './style.css';
 
@@ -9,9 +10,11 @@ class CardMenu extends Component {
 
     this.state = {};
     this.submitUpdate = this.submitUpdate.bind(this);
+    this.cloneCard = this.cloneCard.bind(this);
   }
 
   submitUpdate() {
+    debugger;
     const { cardMenu: { cardData } } = this.props;
     const { tokenName: oldTokenName, tokenDesc: oldTokenDesc, counter: oldCounter={} } = cardData;
     let { powCounter, toughCounter, tokenName=oldTokenName, tokenDesc=oldTokenDesc } = this.state;
@@ -22,6 +25,11 @@ class CardMenu extends Component {
       counter = {powCounter, toughCounter};
     }
     this.props.updateCard(cardData, counter, tokenName, tokenDesc);
+    this.props.closeCardMenu();
+  }
+
+  cloneCard() {
+    this.props.cloneCard(get(this, 'props.cardMenu.cardData'));
     this.props.closeCardMenu();
   }
 
@@ -77,6 +85,7 @@ class CardMenu extends Component {
           <div className='CardMenu-buttons'>
             <Button onClick={this.submitUpdate} label='Update' primary />
             <Button onClick={this.props.closeCardMenu} label='Cancel' danger />
+            { cardData.isNew ? null : <Button onClick={this.cloneCard} label='Clone' secondary /> }
           </div>
         </div>
       </div>

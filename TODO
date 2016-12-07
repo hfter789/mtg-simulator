@@ -1,7 +1,9 @@
 BUG:
 
 backlog:
+the zoom in image view sometimes won't go away
 Review top n card of library; (Kind of working if we just drag the cards out to any holder and put them back)
 more compact card layout
+get rid of the unfriendly scroll on the holder even when there are only one line of cards
 reset game
 poison counter

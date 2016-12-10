@@ -8,7 +8,7 @@ export default connect(
     cards: state.cardSearch.cards
   }),
   dispatch => ({
-    addCardToHolder: (cardObj, player, holderName) => dispatch(addCardToHolder(cardObj, player, holderName)),
+    addCardToHolder: (cardObj, player, holderName, delta) => dispatch(addCardToHolder(cardObj, player, holderName, delta)),
     removeCardFromHolder: (cardObj, player, holderName) => dispatch(removeCardFromHolder(cardObj, player, holderName)),
     showZoomInImage: (coord, props) => dispatch(showZoomInImage(coord, props)),
     removeZoomInImage: () => dispatch(showZoomInImage()),

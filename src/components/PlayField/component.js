@@ -8,20 +8,16 @@ import { normalize } from './utils';
 
 const holderList = [
   {
-    name: 'Creatures',
-    className: 'large-card-holder card-holder',
-  },
-  {
-    name: 'non-creature Permanents',
-    className: 'small-card-holder card-holder',
-  },
-  {
-    name: 'Lands',
-    className: 'large-card-holder card-holder',
+    name: 'Main',
+    className: 'main-holder card-holder',
   },
   {
     name: 'Graveyard',
-    className: 'small-card-holder card-holder',
+    className: 'extra-small-card-holder card-holder',
+  },
+  {
+    name: 'Exile',
+    className: 'extra-small-card-holder card-holder',
   },
   {
     name: 'Hand',
@@ -29,10 +25,6 @@ const holderList = [
   },
   {
     name: 'Library',
-    className: 'extra-small-card-holder card-holder',
-  },
-  {
-    name: 'Exile',
     className: 'extra-small-card-holder card-holder',
   },
 ];
@@ -47,24 +39,23 @@ class PlayField extends Component {
       return null;
     }
     const isLibrary = (normalizeHolder === 'library');
+    const isMain = (normalizeHolder === 'main');
     return holderDeck.map((card, index) =>
       <Card
         key={card.deckId}
-        counter={card.counter}
-        isToken={card.isToken}
-        tokenName={card.tokenName}
-        tokenDesc={card.tokenDesc}
-        data-holder-name={holderName}
         player={playerNum}
         cardId={card.id}
         className='card'
-        deckId={card.deckId}
         disableTap={isLibrary}
-        name={card.name}
-        imageUrl={card.imageUrl}
         isFacedown={isLibrary && !playField.isLibraryReveal[playerNum]}
-        isTapped={card.isTapped}
         toggleTap={this.props.toggleTap}
+        containerStyle={ isMain ? {
+          position: 'absolute',
+          left: card.offset.x,
+          top: card.offset.y,
+          height: '100px',
+        } : null}
+        { ...card }
       />
     );
   }

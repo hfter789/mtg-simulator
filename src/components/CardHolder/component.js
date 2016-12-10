@@ -20,6 +20,7 @@ const HolderTarget = {
     return {
       holderName: props.name,
       player: props.player,
+      delta: monitor.getDifferenceFromInitialOffset(),
     };
   }
 };

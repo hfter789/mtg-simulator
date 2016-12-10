@@ -13,7 +13,6 @@ class Card extends Component {
     };
     this.onImageClick = this.onImageClick.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
-    this.onMouseLeave = this.onMouseLeave.bind(this);
     this.handleRightClick = this.handleRightClick.bind(this);
   }
 
@@ -23,10 +22,6 @@ class Card extends Component {
 
   onMouseMove(e) {
     this.props.showZoomInImage({x:e.clientX, y:e.clientY}, this.props);
-  }
-
-  onMouseLeave() {
-    this.props.removeZoomInImage();
   }
 
   handleRightClick(e) {
@@ -67,6 +62,7 @@ class Card extends Component {
     const {
       className,
       connectDragSource,
+      containerStyle,
       disableTap,
       imageUrl,
       name,
@@ -74,14 +70,15 @@ class Card extends Component {
       isDragging,
       isFacedown,
       isTapped,
-      style
+      style,
+      removeZoomInImage
     } = this.props;
 
     if (isDragging) {
       return null;
     }
     return connectDragSource(
-      <div className='Card-container'>
+      <div className='Card-container' style={containerStyle}>
         {
           isToken ?
           this.renderToken()
@@ -95,7 +92,7 @@ class Card extends Component {
             style={style}
             onClick={disableTap ? null : this.onImageClick}
             onMouseMove={isFacedown ? null : this.onMouseMove }
-            onMouseLeave={isFacedown ? null : this.onMouseLeave }
+            onMouseLeave={isFacedown ? null : removeZoomInImage }
             onContextMenu={this.handleRightClick}
           />
         }
@@ -107,9 +104,11 @@ class Card extends Component {
 
 const cardSource = {
   beginDrag(props) {
+    props.removeZoomInImage();
     return {
       id: props.cardId,
       deckId: props.deckId,
+      holderName: props.holderName,
       imageUrl: props.imageUrl,
       name: props.name,
       player: props.player,
@@ -117,6 +116,7 @@ const cardSource = {
       tokenDesc: props.tokenDesc,
       isToken: props.isToken,
       counter: props.counter,
+      offset: props.offset,
     };
   },
 
@@ -129,8 +129,9 @@ const cardSource = {
     const dropResult = monitor.getDropResult();
     if (dropResult) {
       // we have to remove first since item is shared, this is not nice, will fix it later
-      props.removeCardFromHolder(item, card.props.player, card.props['data-holder-name']);
-      props.addCardToHolder(item, dropResult.player, dropResult.holderName);
+      debugger;
+      props.removeCardFromHolder(item, card.props.player, card.props.holderName);
+      props.addCardToHolder(item, dropResult.player, dropResult.holderName, dropResult.delta);
     }
   }
 };

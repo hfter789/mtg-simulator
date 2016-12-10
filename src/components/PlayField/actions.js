@@ -12,7 +12,7 @@ import { PLAYFIELD_ADD_CARD,
   PLAYFIELD_MULLIGAN,
   } from './constants';
 
-export function addCardToHolder(cardObj, player, holderName) {
+export function addCardToHolder(cardObj, player, holderName, delta) {
   return (dispatch) => {
     dispatch({
       type: PLAYFIELD_ADD_CARD,
@@ -20,6 +20,7 @@ export function addCardToHolder(cardObj, player, holderName) {
         cardObj,
         player,
         holderName,
+        delta,
       }
     });
   }

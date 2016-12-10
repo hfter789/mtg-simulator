@@ -20,6 +20,7 @@ MOCK_CARD_DATA[0].library = MOCK_CARD_DATA[0].library.map((card, index) => ({
   imageUrl: card.imageUrl,
   name: card.name,
   player: 0,
+  holderName: 'library',
   // although i use index to generate deckId at the beginning, this
   // does not represent the index of the card within the array since
   // deck can get shuffle many times and deckId stays the same
@@ -32,6 +33,7 @@ MOCK_CARD_DATA[1].library = MOCK_CARD_DATA[1].library.map((card, index) => ({
   imageUrl: card.imageUrl,
   name: card.name,
   player: 1,
+  holderName: 'library',
   // although i use index to generate deckId at the beginning, this
   // does not represent the index of the card within the array since
   // deck can get shuffle many times and deckId stays the same
@@ -46,18 +48,37 @@ export default (state = MOCK_CARD_DATA, action) => {
     case PLAYFIELD_ADD_CARD: {
       // the player id could be different from the card's original one,
       // we use the holder's player id instead
-      const { holderName, cardObj, player } = action.payload;
+      const { holderName, cardObj, player, delta } = action.payload;
       const normalizeHolder = normalize(holderName);
+      // token just disappear
       if ((normalizeHolder === 'graveyard' || normalizeHolder === 'exile') && cardObj.isToken) {
         return state;
       }
+      if (normalizeHolder === 'main') {
+        // object coming from other holder, we should set offset to 0, 0
+        if (cardObj.holderName !== holderName || player !== cardObj.player) {
+          cardObj.offset = {
+            x: 0,
+            y: 0
+          };
+        } else {
+          // handles user dragging card around in the main holder
+          const { x, y } = cardObj.offset;
+          cardObj.offset = {
+            x: x + delta.x,
+            y: y + delta.y
+          };
+        }
+      }
       const targetHolder = state[+player][normalizeHolder] || [];
       cardObj.player = player;
+      cardObj.holderName = holderName;
       targetHolder.unshift(cardObj);
       state[+player][normalizeHolder] = targetHolder;
       return Object.assign([], state);
     }
     case PLAYFIELD_REMOVE_CARD: {
+      debugger;
       const { holderName, cardObj } = action.payload;
       // here we need to use cardObj's player id so that we 
       // can remove the cardObj from it's old parent
@@ -77,7 +98,7 @@ export default (state = MOCK_CARD_DATA, action) => {
     }
     case PLAYFIELD_TOGGLE_TAP: {
       const cardObj = action.payload;
-      const { 'data-holder-name': holderName, deckId, player } = cardObj;
+      const { holderName, deckId, player } = cardObj;
       if (holderName) {
         const normalizeHolder = normalize(holderName);
         const targetHolder = state[+player][normalizeHolder];
@@ -93,7 +114,7 @@ export default (state = MOCK_CARD_DATA, action) => {
 
     case PLAYFIELD_UPDATE_CARD: {
       const { cardObj, counterData, tokenDesc, tokenName } = action.payload;
-      let { 'data-holder-name': holderName, deckId, player } = cardObj;
+      let { holderName, deckId, player } = cardObj;
       if (cardObj.isNew) {
         // new token put it on the creatures field and let play decide where to put it after
         holderName = 'creatures';
@@ -131,7 +152,7 @@ export default (state = MOCK_CARD_DATA, action) => {
     }
     case PLAYFIELD_CLONE_CARD: {
       const { cardObj } = action.payload;
-      let { 'data-holder-name': holderName, player } = cardObj;
+      let { holderName, player } = cardObj;
       const normalizeHolder = normalize(holderName);
       let targetHolder = state[+player][normalizeHolder];
       const deckId = currentDeckId[+player];

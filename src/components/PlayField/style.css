@@ -38,7 +38,6 @@
 
 .card-holder {
   position: relative;
-  height: 100px;
   display: inline-block;
   box-sizing: border-box;
   border: 1px solid #333;
@@ -47,18 +46,28 @@
   overflow: scroll;
 }
 
+.main-holder {
+  width: 78%;
+  height: 220px;
+  overflow: hidden;
+}
+
 .extra-small-card-holder {
   width: 10%;
+  height: 100px;
 }
 
 .small-card-holder {
   width: 20%;
+  height: 100px;
 }
 
 .large-card-holder {
   width: 78%;
+  height: 100px;
 }
 
 .full-card-holder {
   width: 89%;
+  height: 100px;
 }

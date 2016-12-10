@@ -1,8 +1,6 @@
 BUG:
 
 backlog:
-more compact card layout (land/perm/creatures)
-the zoom in image view sometimes won't go away
 Review top n card of library; (Kind of working when we toggle library reveal)
 get rid of the unfriendly scroll on the holder even when there are only one line of cards (auto expand)
 reset game

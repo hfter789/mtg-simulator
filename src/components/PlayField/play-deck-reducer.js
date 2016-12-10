@@ -1,6 +1,6 @@
 import { shuffleArray, normalize } from './utils';
 import MOCK_CARD_DATA1 from '../../../decks/life.json';
-import MOCK_CARD_DATA2 from '../../../decks/token.json';
+import MOCK_CARD_DATA2 from '../../../decks/dark.json';
 import { PLAYFIELD_ADD_CARD,
   PLAYFIELD_REMOVE_CARD,
   PLAYFIELD_TOGGLE_TAP,

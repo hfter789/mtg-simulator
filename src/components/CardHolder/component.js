@@ -3,25 +3,57 @@ import './style.css';
 import { DropTarget } from 'react-dnd';
 
 class CardHolder extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      containerOffset: {x: 0, y: 0}
+    };
+  }
+
+  componentDidMount() {
+    debugger;
+    const container = this.refs.container;
+    if (container) {
+      const bodyRect = document.body.getBoundingClientRect();
+      const elemRect = container.getBoundingClientRect();
+      const x = elemRect.left - bodyRect.left;
+      const y = elemRect.top - bodyRect.top;
+      this.setState({
+        containerOffset: {
+          x,
+          y,
+        }
+      });
+    }
+  }
+
   render() {
     const { className, name, connectDropTarget, children } = this.props;
 
     return connectDropTarget(
       <div className={className}>
-        <div className='CardHolder-label'> { name } </div>
-        { children }
+        <div ref='container' style={{height: '100%'}}>
+          <div className='CardHolder-label'> { name } </div>
+          { children }
+        </div>
       </div>
     );
   }
 }
 
 const HolderTarget = {
-  drop(props, monitor) {
+  drop(props, monitor, component) {
+    debugger;
+    const { x, y } = monitor.getSourceClientOffset();
     return {
       holderName: props.name,
       player: props.player,
       delta: monitor.getDifferenceFromInitialOffset(),
-      lastOffset: monitor.getSourceClientOffset(),
+      lastOffset: {
+        x: x - component.state.containerOffset.x,
+        y: y - component.state.containerOffset.y,
+      },
     };
   }
 };

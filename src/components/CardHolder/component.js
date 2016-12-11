@@ -12,7 +12,6 @@ class CardHolder extends Component {
   }
 
   componentDidMount() {
-    debugger;
     const container = this.refs.container;
     if (container) {
       const bodyRect = document.body.getBoundingClientRect();
@@ -52,7 +51,7 @@ const HolderTarget = {
       delta: monitor.getDifferenceFromInitialOffset(),
       lastOffset: {
         x: x - component.state.containerOffset.x,
-        y: y - component.state.containerOffset.y,
+        y: y - component.state.containerOffset.y-20,
       },
     };
   }

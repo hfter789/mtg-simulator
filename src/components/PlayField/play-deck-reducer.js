@@ -59,8 +59,8 @@ export default (state = MOCK_CARD_DATA, action) => {
         if (cardObj.holderName !== holderName || player !== cardObj.player) {
           cardObj.offset = {
              // subtract the padding to get the correct coordinate
-            x: lastOffset.x-25,
-            y: lastOffset.y-20
+            x: lastOffset.x,
+            y: lastOffset.y
           };
         } else {
           // handles user dragging card around in the main holder
@@ -79,7 +79,6 @@ export default (state = MOCK_CARD_DATA, action) => {
       return Object.assign([], state);
     }
     case PLAYFIELD_REMOVE_CARD: {
-      debugger;
       const { holderName, cardObj } = action.payload;
       // here we need to use cardObj's player id so that we 
       // can remove the cardObj from it's old parent

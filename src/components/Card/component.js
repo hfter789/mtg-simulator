@@ -129,7 +129,6 @@ const cardSource = {
     const dropResult = monitor.getDropResult();
     if (dropResult) {
       // we have to remove first since item is shared, this is not nice, will fix it later
-      debugger;
       props.removeCardFromHolder(item, card.props.player, card.props.holderName);
       props.addCardToHolder(item, dropResult.player, dropResult.holderName, dropResult.delta, dropResult.lastOffset);
     }

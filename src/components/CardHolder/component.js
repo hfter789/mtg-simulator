@@ -21,6 +21,7 @@ const HolderTarget = {
       holderName: props.name,
       player: props.player,
       delta: monitor.getDifferenceFromInitialOffset(),
+      lastOffset: monitor.getSourceClientOffset(),
     };
   }
 };

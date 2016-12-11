@@ -48,7 +48,7 @@ export default (state = MOCK_CARD_DATA, action) => {
     case PLAYFIELD_ADD_CARD: {
       // the player id could be different from the card's original one,
       // we use the holder's player id instead
-      const { holderName, cardObj, player, delta } = action.payload;
+      const { holderName, cardObj, player, delta, lastOffset } = action.payload;
       const normalizeHolder = normalize(holderName);
       // token just disappear
       if ((normalizeHolder === 'graveyard' || normalizeHolder === 'exile') && cardObj.isToken) {
@@ -58,8 +58,9 @@ export default (state = MOCK_CARD_DATA, action) => {
         // object coming from other holder, we should set offset to 0, 0
         if (cardObj.holderName !== holderName || player !== cardObj.player) {
           cardObj.offset = {
-            x: 0,
-            y: 0
+             // subtract the padding to get the correct coordinate
+            x: lastOffset.x-25,
+            y: lastOffset.y-20
           };
         } else {
           // handles user dragging card around in the main holder
@@ -168,7 +169,10 @@ export default (state = MOCK_CARD_DATA, action) => {
       if (!state[playerNum].hand) {
         state[playerNum].hand = [];
       }
-      state[playerNum].hand.unshift(state[playerNum].library.shift());
+      state[playerNum].hand.unshift({
+        ...state[playerNum].library.shift(),
+        holderName: 'hand',
+      });
       return Object.assign([], state);
     }
     case PLAYFIELD_MULLIGAN: {

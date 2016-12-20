@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux';
 import promiseMiddleware from 'redux-promise-middleware';
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route, useRouterHistory } from 'react-router'
+import { createHistory } from 'history';
 import thunk from 'redux-thunk'
 import App from './components/App';
 import PlayField from './components/PlayField';
@@ -23,6 +24,10 @@ const store = createStore(
     devtool,
   )
 );
+
+const browserHistory = useRouterHistory(createHistory)({
+  basename: '/mtg-simulator'
+});
 
 ReactDOM.render(
   <Provider store={store}>

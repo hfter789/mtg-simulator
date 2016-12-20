@@ -43,7 +43,6 @@ class CardHolder extends Component {
 
 const HolderTarget = {
   drop(props, monitor, component) {
-    debugger;
     const { x, y } = monitor.getSourceClientOffset();
     return {
       holderName: props.name,

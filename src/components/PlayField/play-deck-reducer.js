@@ -1,6 +1,6 @@
 import { shuffleArray, normalize } from './utils';
-import MOCK_CARD_DATA1 from '../../../decks/life.json';
-import MOCK_CARD_DATA2 from '../../../decks/dark.json';
+import MOCK_CARD_DATA1 from '../../../decks/infect.json';
+import MOCK_CARD_DATA2 from '../../../decks/token.json';
 import { PLAYFIELD_ADD_CARD,
   PLAYFIELD_REMOVE_CARD,
   PLAYFIELD_TOGGLE_TAP,
@@ -74,7 +74,12 @@ export default (state = MOCK_CARD_DATA, action) => {
       const targetHolder = state[+player][normalizeHolder] || [];
       cardObj.player = player;
       cardObj.holderName = holderName;
-      targetHolder.unshift(cardObj);
+      if (normalizeHolder === 'main') {
+        // in main, we want to render the last one in at last
+        targetHolder.push(cardObj);
+      } else {
+        targetHolder.unshift(cardObj);
+      }
       state[+player][normalizeHolder] = targetHolder;
       return Object.assign([], state);
     }
@@ -113,11 +118,12 @@ export default (state = MOCK_CARD_DATA, action) => {
     }
 
     case PLAYFIELD_UPDATE_CARD: {
+      debugger;
       const { cardObj, counterData, tokenDesc, tokenName } = action.payload;
       let { holderName, deckId, player } = cardObj;
       if (cardObj.isNew) {
         // new token put it on the creatures field and let play decide where to put it after
-        holderName = 'creatures';
+        holderName = 'main';
         // generate a deck id for token
         deckId = currentDeckId[+player];
         currentDeckId[+player]++;
@@ -136,6 +142,8 @@ export default (state = MOCK_CARD_DATA, action) => {
             isToken: true,
             player,
             deckId,
+            holderName: 'main',
+            offset: {x: 0, y: 0}
           });
           return Object.assign([], state);
         }
@@ -182,11 +190,17 @@ export default (state = MOCK_CARD_DATA, action) => {
       const oldHand = state[playerNum].hand;
       state[playerNum].hand = [];
       oldHand.forEach((cardObj) => {
-        state[playerNum].library.push(cardObj);
+        state[playerNum].library.push({
+          ...cardObj,
+          holderName: 'library'
+        });
       });
       state[playerNum].library = shuffleArray(state[playerNum].library);
       for (let i = 0; i < mulliganCount[playerNum]; i++) {
-        state[playerNum].hand.unshift(state[playerNum].library.shift());
+        state[playerNum].hand.unshift({
+          ...state[playerNum].library.shift(),
+          holderName: 'hand',
+        });
       }
       mulliganCount[playerNum]--;
       return Object.assign([], state);

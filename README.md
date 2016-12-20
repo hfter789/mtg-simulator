@@ -1,5 +1,7 @@
 # Magic the gathering simulator
 
+This is a web app that allows you to play magic, the gathering Two Headed Giant using my browser. You can add your own deck to play without having to buy any cards! Try it out at https://hfter789.github.io/mtg-simulator/.
+
 ## Requirements
 
 For development, you will only need Node.js installed on your environement.
